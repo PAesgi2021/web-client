@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'yourturn';
+
+  elementHeight(tagName: string) {
+    return document.getElementsByTagName(tagName)[0].clientHeight;
+  }
+
+  bodyHeight() {
+    const heightHF = this.elementHeight("app-header") + this.elementHeight("app-footer")
+    return window.innerHeight - heightHF;
+  }
 }
