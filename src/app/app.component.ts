@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from "./services/user-service/user.service";
 
 
 @Component({
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'yourturn';
+
+  constructor(public userService: UserService) {
+  }
 
   elementHeight(tagName: string) {
     return document.getElementsByTagName(tagName)[0].clientHeight;
