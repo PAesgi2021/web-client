@@ -12,9 +12,6 @@ import { RegisterModule } from "./register/register.module";
 
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
     SharedModule,
@@ -25,6 +22,9 @@ import { RegisterModule } from "./register/register.module";
     RegisterModule,
     /* import above this comment */
     AppRoutingModule
+  ],
+  declarations: [
+    AppComponent
   ],
   providers: [
     SocialFeedModule,

@@ -1,4 +1,17 @@
-<div class="container bg-dark text-white h-100">
-  <p>social-feed works!</p>
+<div class="container h-100">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+      <div class="container">
+        <div class="row my-3">
+          create post
+        </div>
+        <div class="row" *ngFor="let post of postService.posts.slice().reverse()">
+          <app-post [post]="post"></app-post>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
 </div>
 

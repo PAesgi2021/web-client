@@ -1,0 +1,12 @@
+<div class="container my-1 p-0">
+  <div class="row rounded p-1" style="background-color: #f2f2f2; font-size: small; white-space: pre-line"
+       (dblclick)="handleLikeAction()">
+    {{message.content}}
+  </div>
+  <div class="row">
+    <button class="btn btn-sm w-auto" style="font-size: x-small" (click)="handleLikeAction()">
+      <i class="{{hasLike ? 'bi bi-heart-fill' : 'bi bi-heart'}}"></i>
+      {{message.likes}}
+    </button>
+  </div>
+</div>

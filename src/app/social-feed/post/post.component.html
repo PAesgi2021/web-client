@@ -1,0 +1,43 @@
+<div class="container m-1 rounded shadow bg-white">
+  <div class="row p-2 fw-bolder text-uppercase">{{post.author.firstname[0] + post.author.lastname[0]}}</div>
+  <div class="row border-top p-2">
+    <div class="container">
+      <div class="row">{{post.title}}</div>
+      <div class="row fw-lighter">{{post.description}}</div>
+    </div>
+  </div>
+  <div class="row border-top">
+    <div class="commentActions btn-group p-0" role="group" aria-label="Basic example">
+      <button class="btn btn-sm" (click)="handleLikeAction()">
+        <i class="{{hasLike ? 'bi bi-heart-fill' : 'bi bi-heart'}}"></i>
+        {{this.post.likes}}
+      </button>
+      <button class="btn btn-sm" (click)="handleVisibilityCommentAction()">
+        <i class="{{hideComments ? 'bi bi-chat-dots-fill' : 'bi bi-chat-dots'}}"></i>
+        {{this.post.comments.length}} comments
+      </button>
+    </div>
+  </div>
+  <div *ngIf="hideComments">
+    <div class="d-block pb-2">
+      <form [formGroup]="commentFormGroup" (submit)="onSubmitComment()" class="p-0">
+        <div class="form-group">
+          <div class="form-control d-flex align-items-center p-1">
+            <!--              <input class="border-0 w-100" type="text" placeholder="Comment the post..."-->
+            <!--                     formControlName="text">-->
+            <textarea class="border-0 w-100 px-1" style="font-size: smaller"
+                      id="exampleFormControlTextarea1" rows="2" placeholder="comment here..."
+                      formControlName="text"></textarea>
+          </div>
+          <button class="btn btn-sm bi bi-card-image mt-1 py-0 px-3 disabled"></button>
+          <button type="submit" class="btn btn-outline-primary btn-sm float-end bi bi-arrow-return-left mt-1 py-0 px-3" [disabled]="commentFormGroup.get('text').invalid"></button>
+        </div>
+      </form>
+    </div>
+    <div class="container overflow-auto" style="max-height: 200px;">
+      <div *ngFor="let comment of post.comments" class="row">
+        <app-comment [message]="comment"></app-comment>
+      </div>
+    </div>
+  </div>
+</div>

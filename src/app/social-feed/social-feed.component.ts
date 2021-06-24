@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from "../services/post-service/post.service";
 
 @Component({
   selector: 'app-social-feed',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocialFeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(public postService: PostService) { }
 
   ngOnInit(): void {
+    console.log(this.postService.posts);
   }
 
 }

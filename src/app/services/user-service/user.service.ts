@@ -6,16 +6,13 @@ import { User } from "../../models/user";
 })
 export class UserService {
 
-  private _user: User;
+  user = {
+    email: "email",
+    password: "password",
+    firstname: "password",
+    lastname: "password"
+  }
 
   constructor() { }
 
-
-  get user(): User {
-    return this._user;
-  }
-
-  set user(value: User) {
-    this._user = value;
-  }
 }
