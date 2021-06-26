@@ -1,15 +1,32 @@
 export interface IMessageProps {
-  content: string;
+  id?: number
+  content?: string;
+  date?: Date;
+  likes?: number;
 }
 
 export class Message {
 
+  private _id: number
   private _content: string;
+  private _date?: Date;
   private _likes: number;
 
-  constructor(content: string) {
-    this._content = content;
-    this._likes = 0;
+  constructor(props: IMessageProps) {
+    this._id = props.id;
+    this._content = props.content;
+    this._date = props.date;
+    this._likes = props.likes;
+  }
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
   }
 
   get content(): string {
@@ -26,5 +43,13 @@ export class Message {
 
   set likes(value: number) {
     this._likes = value;
+  }
+
+  get date(): Date {
+    return this._date;
+  }
+
+  set date(value: Date) {
+    this._date = value;
   }
 }

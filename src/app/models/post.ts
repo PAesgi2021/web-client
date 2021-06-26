@@ -1,16 +1,20 @@
 import { User } from "./user";
 import { Message } from "./message";
+import { modelSample } from "../utils/model-sample";
 
 
 export interface IPostProps {
+  id?: number;
   title: string;
-  description: string;
-  isPrivate: boolean;
-  author: User;
+  description?: string;
+  isPrivate?: boolean;
+  likes?: number;
+  comments?: Message[];
 }
 
 export class Post {
 
+  private _id: number;
   private _title: string;
   private _description: string;
   private _isPrivate: boolean;
@@ -19,12 +23,24 @@ export class Post {
   private _author: User;
 
   constructor(props: IPostProps) {
+    this._id = props.id;
     this._title = props.title;
     this._description = props.description;
     this._isPrivate = props.isPrivate;
-    this._likes = 0;
-    this._comments = [];
-    this._author = props.author;
+    this._likes = props.likes;
+    this._comments = props.comments;
+    this._author = modelSample.user_sample();
+  }
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
   }
 
   get title(): string {
@@ -51,12 +67,12 @@ export class Post {
     this._isPrivate = value;
   }
 
-  get author(): User {
-    return this._author;
+  get likes(): number {
+    return this._likes;
   }
 
-  set author(value: User) {
-    this._author = value;
+  set likes(value: number) {
+    this._likes = value;
   }
 
   get comments(): Message[] {
@@ -67,16 +83,11 @@ export class Post {
     this._comments = value;
   }
 
-  addMessage(value: Message) {
-    this._comments.push(value);
+  get author(): User {
+    return this._author;
   }
 
-  get likes(): number {
-    return this._likes;
+  set author(value: User) {
+    this._author = value;
   }
-
-  set likes(value: number) {
-    this._likes = value;
-  }
-
 }

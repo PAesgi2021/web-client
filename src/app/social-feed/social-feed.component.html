@@ -1,17 +1,32 @@
-<div class="container h-100">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col">
-      <div class="container">
-        <div class="row my-3">
-          create post
-        </div>
-        <div class="row" *ngFor="let post of postService.posts.slice().reverse()">
-          <app-post [post]="post"></app-post>
+<ng-container *ngIf="isFetching; else page">
+  <app-spinner></app-spinner>
+</ng-container>
+
+<ng-template #page>
+
+  <div class="container h-100">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col">
+        <div class="container">
+          <div class="row my-3">
+            <button class="btn btn-primary btn-sm"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                    aria-controls="offcanvasWithBothOptions"
+            >create post
+            </button>
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                 aria-labelledby="offcanvasWithBothOptionsLabel">
+              <app-create-post></app-create-post>
+            </div>
+          </div>
+          <div class="row" *ngFor="let post of posts">
+            <app-post [post]="post"></app-post>
+          </div>
         </div>
       </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
   </div>
-</div>
 
+</ng-template>

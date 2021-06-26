@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SocialFeedComponent } from "./social-feed.component";
+import { CreatePostComponent } from "./create-post/create-post.component";
 
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
       {
         path: "",
         component: SocialFeedComponent
+      },
+      {
+        path: "create-post",
+        component: CreatePostComponent
       }
     ]
   }

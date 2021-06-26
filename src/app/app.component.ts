@@ -10,7 +10,7 @@ import { UserService } from "./services/user-service/user.service";
 export class AppComponent {
   title = 'yourturn';
 
-  constructor(public userService: UserService) {
+  constructor() {
   }
 
   elementHeight(tagName: string) {

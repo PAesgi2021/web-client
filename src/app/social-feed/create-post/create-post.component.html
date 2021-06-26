@@ -1,22 +1,42 @@
-<div class="container bg-dark text-white h-100 w-100 shadow rounded">
-  <form [formGroup]="postFormGroup" (submit)="onSubmitPost()" class="p-0">
-    <div class="form-group">
-      <div class="form-control">
-        <input class="border-0 w-100" type="text" placeholder="Comment the post..."
-               formControlName="title">
-      </div>
-      <div class="form-control">
-          <textarea class="border-0 border-bottom w-100 px-1" style="font-size: smaller"
-                    id="exampleFormControlTextarea1" rows="2"
-                    formControlName="description"></textarea>
-        <button class="btn btn-sm bi bi-card-image py-0 px-3 disabled"></button>
-      </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-      </div>
+<div class="container p-0">
+  <div class="row bg-dark text-white d-flex justify-content-center align-items-center fw-bolder p-2 mb-3">
+    create a new post
+  </div>
+  <div class="row text-center mb-3 p-2">
+      <p class="bg-light border">Here, you can share whatever you want or create challenge !</p>
+  </div>
+
+  <form [formGroup]="createPostForm" (submit)="onSubmitPost()" class="row g-3">
+    <div class="mb-3">
+      <label for="title">Title</label>
+      <input id="title" class="form-control font-size-small"
+             type="text" placeholder="post-title"
+             formControlName="title">
     </div>
-    <button type="submit"
-            class="btn btn-outline-primary btn-sm float-end bi bi-arrow-return-left mt-1 py-0 px-3"></button>
+    <div class="mb-3">
+      <label for="description">Description <span class="fw-light">(optional)</span></label>
+      <textarea id="description" class="form-control font-size-small"
+                type="text" placeholder="post-description"
+                style="min-height: 100px"
+                formControlName="description"></textarea>
+    </div>
+    <div class="form-check form-switch mb-3 mx-2">
+      <input class="form-check-input" type="checkbox" id="isPrivateForm"
+             formControlName="isPrivate">
+      <label class="form-check-label" for="isPrivateForm">private</label>
+    </div>
+    <div class="w-100">
+      <button type="submit" class="btn btn-danger mb-3 float-start"
+              (click)="handleClose()">
+        <i class="bi bi-x"></i>
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary mb-3 float-end"
+              [disabled]="createPostForm.invalid">
+        <i class="bi bi-plus"></i>
+        Create
+      </button>
+    </div>
   </form>
+
 </div>

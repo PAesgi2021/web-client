@@ -15,7 +15,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     SocialFeedRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     SocialFeedComponent,

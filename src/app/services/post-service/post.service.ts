@@ -1,28 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Post } from "../../models/post";
 import { User } from "../../models/user";
+import { modelSample } from "../../utils/model-sample";
+import { HttpClient } from "@angular/common/http";
+import { PostDto } from "../dto/post.dto";
+import { UpdatePostDto } from "../dto/update-post.dto";
+import { Observable } from "rxjs";
+import { CreatePostDto } from "../dto/create-post.dto";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  posts: Post[] = [];
+  private API_URL: string = "http://localhost:3000/yt-post";
 
-  constructor() {
-    for (let i = 0; i < 5; i++) {
-      this.posts.push(
-        new Post({
-          title: "A very interesting title",
-          description: "> beautiful description as you can see",
-          isPrivate: false,
-          author: new User({
-            firstname: "firstname",
-            lastname: "lastname",
-            email: "email",
-            password: "password"
-          })
-        }));
-    }
+  constructor(
+    private http: HttpClient
+  ) {
+  }
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  getAllPost(): Observable<PostDto[]> {
+    return this.http.get<PostDto[]>(this.API_URL, {responseType: 'json'});
+  }
+
+  createPost(dto: CreatePostDto): Observable<PostDto> {
+    return this.http.post<PostDto>(this.API_URL, dto);
+  }
+
+  updatePost(id: number, dto: UpdatePostDto): Observable<PostDto> {
+    return this.http.patch<PostDto>(`${this.API_URL}/${id}`, dto);
   }
 
 }

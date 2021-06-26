@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { CommentComponent } from './comment/comment.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -12,12 +13,14 @@ import { CommentComponent } from './comment/comment.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    CommentComponent
+    CommentComponent,
+    SpinnerComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    CommentComponent
+    CommentComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule {

@@ -7,6 +7,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MessageService } from "../../services/message-service/message.service";
+import { PostService } from "../../services/post-service/post.service";
 
 
 @Component({
@@ -21,19 +23,31 @@ export class PostComponent implements OnInit {
   hideComments;
 
   commentFormGroup = new FormGroup({
-    text: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    text: new FormControl('', [Validators.required, Validators.minLength(1)]),
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private messageService: MessageService,
+    private postService: PostService
+  ) {
   }
 
   ngOnInit(): void {
   }
 
+  // -------------------------------------------------------------------------------------------------------------------
+
   onSubmitComment() {
     if (this.commentFormGroup.invalid) return;
 
-    this.post.addMessage(new Message(this.commentFormGroup.value.text));
+    this.messageService.createMessage({
+      content: this.commentFormGroup.value.text,
+      post_id: this.post.id
+    }).subscribe(value => {
+      this.post.comments.push(new Message({
+        ...value
+      }))
+    });
     this.hideComments = true;
     this.commentFormGroup.reset();
   }
@@ -44,7 +58,8 @@ export class PostComponent implements OnInit {
 
   handleLikeAction() {
     this.hasLike = !this.hasLike;
-
     this.hasLike ? this.post.likes++ : this.post.likes--;
+    this.postService.updatePost(this.post.id, {likes: this.post.likes}).subscribe();
   }
+
 }

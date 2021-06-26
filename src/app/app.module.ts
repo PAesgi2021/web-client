@@ -9,17 +9,19 @@ import { SocialFeedModule } from "./social-feed/social-feed.module";
 import { LoginModule } from "./login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
   imports: [
-    BrowserModule,
-    SharedModule,
-    CoreModule,
-    SocialFeedModule,
-    LoginModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    CoreModule,
+    HttpClientModule,
+    LoginModule,
     RegisterModule,
+    SharedModule,
+    SocialFeedModule,
     /* import above this comment */
     AppRoutingModule
   ],
