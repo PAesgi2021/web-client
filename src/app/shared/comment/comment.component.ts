@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Message } from "../../models/message";
 import { MessageService } from "../../services/message-service/message.service";
+import { FileUtils } from "../../utils/file-utils";
 
 
 @Component({
@@ -11,7 +12,7 @@ import { MessageService } from "../../services/message-service/message.service";
 export class CommentComponent implements OnInit {
 
   @Input() message: Message;
-  messageDate: string;
+  messageDate;
   hasLike = false
 
   constructor(
@@ -20,8 +21,8 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(typeof this.message.date)
-    console.log(this.message.date.getDate())
+    this.messageDate = FileUtils.hoursDiff(new Date(Date.now()), new Date(this.message.date));
+    console.log(this.messageDate);
   }
 
   handleLikeAction() {
