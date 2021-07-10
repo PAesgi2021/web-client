@@ -13,7 +13,7 @@ import { UpdateMessageDto } from "../dto/update-message.dto";
   providedIn: 'root'
 })
 export class MessageService {
-  private API_URL: string = "http://localhost:3000/message";
+  private API_URL: string = "http://localhost:3000/yt-message";
 
   constructor(
     private http: HttpClient

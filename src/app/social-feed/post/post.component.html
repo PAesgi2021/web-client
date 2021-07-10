@@ -1,43 +1,47 @@
-<div class="container m-1 rounded shadow bg-white">
-  <!-- post -->
-  <div class="row p-2 fw-bolder text-uppercase">{{post.author.firstname[0] + post.author.lastname[0]}}</div>
-  <div class="row border-top p-2">
-    <div class="container">
-      <div class="row">{{post.title}}</div>
-      <div class="row fw-lighter">{{post.description}}</div>
-    </div>
+<div class="shadow bg-white rounded p-2 my-3">
+  <div>
+      {{post.profile.pseudo}}
+      <p class="fw-light">{{postDate.toLocaleString()}}</p>
   </div>
-  <!-- actions : like, comment -->
-  <div class="row border-top">
-    <div class="commentActions btn-group p-0" role="group" aria-label="Basic example">
+  <div class="border-top my-3 py-3">{{post.description}}</div>
+  <div class="border-bottom my-3 pb-3 text-center">
+    <img [src]="this.post.image" alt="" style="max-height: 500px; max-width: 500px;">
+  </div>
+
+  <!-- likes / comments -->
+  <div class="row">
+    <div class="col">
       <button class="btn btn-sm" (click)="handleLikeAction()">
         <i class="{{hasLike ? 'bi bi-heart-fill' : 'bi bi-heart'}}"></i>
         {{this.post.likes}}
       </button>
-      <button class="btn btn-sm" (click)="handleVisibilityCommentAction()">
+    </div>
+    <div class="col">
+      <button class="btn btn-sm float-end" (click)="handleVisibilityCommentAction()">
         <i class="{{hideComments ? 'bi bi-chat-dots-fill' : 'bi bi-chat-dots'}}"></i>
         {{this.post.comments.length}} comments
       </button>
     </div>
   </div>
-  <!-- comments -->
-  <div *ngIf="hideComments">
-    <div class="d-block pb-2">
-      <form [formGroup]="commentFormGroup" (submit)="onSubmitComment()" class="p-0">
-        <div class="form-group">
-          <div class="form-control d-flex align-items-center p-1">
-            <textarea class="border-0 w-100 px-1" style="font-size: smaller"
-                      id="exampleFormControlTextarea1" rows="2" placeholder="comment here..."
-                      formControlName="text"></textarea>
-          </div>
-          <button class="btn btn-sm bi bi-card-image mt-1 py-0 px-3 disabled"></button>
-          <button type="submit" class="btn btn-outline-primary btn-sm float-end bi bi-arrow-return-left mt-1 py-0 px-3"
-                  [disabled]="commentFormGroup.get('text').invalid"></button>
-        </div>
-      </form>
+
+  <!-- entry / comments -->
+  <div *ngIf="hideComments" class="mt-2">
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Comment this post</mat-label>
+      <textarea matInput [formControl]="contentComment"></textarea>
+    </mat-form-field>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-sm me-3">
+        <i class="bi bi-images me-1"></i>Photo or Video
+      </button>
     </div>
-    <div class="container overflow-auto" style="max-height: 200px;">
-      <div *ngFor="let comment of post.comments" class="row">
+    <button (click)="onSubmitComment()" [disabled]="contentComment.invalid"
+            class="btn btn-sm btn-outline-primary float-end">
+      <i class="bi bi-arrow-return-left mt-1 py-0 px-3"></i>
+    </button>
+    <hr>
+    <div class="overflow-auto" style="max-height: 200px;">
+      <div *ngFor="let comment of post.comments">
         <app-comment [message]="comment"></app-comment>
       </div>
     </div>

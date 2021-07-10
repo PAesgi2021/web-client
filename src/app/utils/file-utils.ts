@@ -1,3 +1,6 @@
+import { Post } from "../models/post";
+
+
 export class FileUtils {
 
   public static dayDiff(d1: Date, d2: Date) {
@@ -7,5 +10,10 @@ export class FileUtils {
 
   public static hoursDiff(d1: Date, d2: Date) {
     return Math.abs(d1.valueOf() - d2.valueOf()) / 36e5;
+  }
+
+  public static sortByDate(a: Post, b: Post) {
+    return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+
   }
 }

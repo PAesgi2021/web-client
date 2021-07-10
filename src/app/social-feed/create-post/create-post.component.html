@@ -1,42 +1,27 @@
-<div class="container p-0">
-  <div class="row bg-dark text-white d-flex justify-content-center align-items-center fw-bolder p-2 mb-3">
-    create a new post
-  </div>
-  <div class="row text-center mb-3 p-2">
-      <p class="bg-light border">Here, you can share whatever you want or create challenge !</p>
-  </div>
-
-  <form [formGroup]="createPostForm" (submit)="onSubmitPost()" class="row g-3">
-    <div class="mb-3">
-      <label for="title">Title</label>
-      <input id="title" class="form-control font-size-small"
-             type="text" placeholder="post-title"
-             formControlName="title">
+<div class="shadow bg-white rounded p-2">
+  <form [formGroup]="createPostForm" (submit)="onSubmitPost()">
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Create a new Challenge</mat-label>
+      <textarea formControlName="description" matInput placeholder="Ex. save our planet"></textarea>
+    </mat-form-field>
+    <div class="text-center" *ngIf="image != ''">
+      <img [src]="this.image" alt="" style="max-height: 500px; max-width: 500px;">
+      <hr>
     </div>
-    <div class="mb-3">
-      <label for="description">Description <span class="fw-light">(optional)</span></label>
-      <textarea id="description" class="form-control font-size-small"
-                type="text" placeholder="post-description"
-                style="min-height: 100px"
-                formControlName="description"></textarea>
-    </div>
-    <div class="form-check form-switch mb-3 mx-2">
-      <input class="form-check-input" type="checkbox" id="isPrivateForm"
-             formControlName="isPrivate">
-      <label class="form-check-label" for="isPrivateForm">private</label>
-    </div>
-    <div class="w-100">
-      <button type="submit" class="btn btn-danger mb-3 float-start"
-              (click)="handleClose()">
-        <i class="bi bi-x"></i>
-        Cancel
+    <mat-slide-toggle formControlName="isPrivate">Private</mat-slide-toggle>
+    <hr>
+    <div class="btn-group" role="group">
+      <input type="file" (change)="handleTestImg($event)" style="display: none" #fileInput>
+      <button type="button" (click)="fileInput.click()" class="btn btn-sm me-3">
+        <i class="bi bi-images me-1"></i>Photo or Video
       </button>
-      <button type="submit" class="btn btn-primary mb-3 float-end"
-              [disabled]="createPostForm.invalid">
-        <i class="bi bi-plus"></i>
-        Create
+      <button type="button" class="btn btn-sm me-3">
+        <i class="bi bi-tag-fill me-1"></i>Tag
       </button>
     </div>
+    <button type="submit" class="btn btn-sm btn-dark float-end" [disabled]="createPostForm.invalid">
+      <i class="bi bi-plus"></i>
+      Create
+    </button>
   </form>
-
 </div>

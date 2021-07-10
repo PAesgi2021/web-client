@@ -2,9 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
 import { Message } from '../../models/message';
 import {
-  FormBuilder,
   FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { MessageService } from "../../services/message-service/message.service";
@@ -19,29 +17,30 @@ import { PostService } from "../../services/post-service/post.service";
 export class PostComponent implements OnInit {
   @Input() post: Post;
 
+  postDate: Date;
   hasLike = false;
   hideComments;
+  contentComment = new FormControl('', [Validators.required, Validators.minLength(1)]);
 
-  commentFormGroup = new FormGroup({
-    text: new FormControl('', [Validators.required, Validators.minLength(1)]),
-  });
 
   constructor(
     private messageService: MessageService,
-    private postService: PostService
+    private postService: PostService,
   ) {
   }
 
   ngOnInit(): void {
+    console.log(this.post);
+    this.postDate = new Date(this.post.createdAt);
   }
 
   // -------------------------------------------------------------------------------------------------------------------
 
   onSubmitComment() {
-    if (this.commentFormGroup.invalid) return;
+    console.log(this.contentComment.value)
 
     this.messageService.createMessage({
-      content: this.commentFormGroup.value.text,
+      content: this.contentComment.value,
       post_id: this.post.id
     }).subscribe(value => {
       this.post.comments.push(new Message({
@@ -49,7 +48,7 @@ export class PostComponent implements OnInit {
       }))
     });
     this.hideComments = true;
-    this.commentFormGroup.reset();
+    this.contentComment.reset();
   }
 
   handleVisibilityCommentAction() {

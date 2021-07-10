@@ -1,35 +1,41 @@
-import { User } from "./user";
+import { Profile } from "./profile";
 import { Message } from "./message";
-import { modelSample } from "../utils/model-sample";
 
 
 export interface IPostProps {
   id?: number;
-  title: string;
-  description?: string;
-  isPrivate?: boolean;
   likes?: number;
+  isPrivate?: boolean;
+  description?: string;
+  createdAt: string;
+  updatedAt: string;
+  image?: string;
   comments?: Message[];
+  profile?: Profile;
 }
 
 export class Post {
 
   private _id: number;
-  private _title: string;
   private _description: string;
   private _isPrivate: boolean;
   private _likes: number;
+  private _createdAt: string;
+  private _updatedAt: string;
+  private _image: string;
   private _comments: Message[];
-  private _author: User;
+  private _profile: Profile;
 
   constructor(props: IPostProps) {
     this._id = props.id;
-    this._title = props.title;
     this._description = props.description;
     this._isPrivate = props.isPrivate;
     this._likes = props.likes;
+    this._createdAt = props.createdAt;
+    this._updatedAt = props.updatedAt;
     this._comments = props.comments;
-    this._author = modelSample.user_sample();
+    this._profile = props.profile;
+    this._image = props.image;
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -41,14 +47,6 @@ export class Post {
 
   set id(value: number) {
     this._id = value;
-  }
-
-  get title(): string {
-    return this._title;
-  }
-
-  set title(value: string) {
-    this._title = value;
   }
 
   get description(): string {
@@ -83,11 +81,36 @@ export class Post {
     this._comments = value;
   }
 
-  get author(): User {
-    return this._author;
+  get profile(): Profile {
+    return this._profile;
   }
 
-  set author(value: User) {
-    this._author = value;
+  set profile(value: Profile) {
+    this._profile = value;
   }
+
+  get createdAt(): string {
+    return this._createdAt;
+  }
+
+  set createdAt(value: string) {
+    this._createdAt = value;
+  }
+
+  get updatedAt(): string {
+    return this._updatedAt;
+  }
+
+  set updatedAt(value: string) {
+    this._updatedAt = value;
+  }
+
+  get image(): string {
+    return this._image;
+  }
+
+  set image(value: string) {
+    this._image = value;
+  }
+
 }

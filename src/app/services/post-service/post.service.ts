@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Post } from "../../models/post";
-import { User } from "../../models/user";
-import { modelSample } from "../../utils/model-sample";
 import { HttpClient } from "@angular/common/http";
 import { PostDto } from "../dto/post.dto";
 import { UpdatePostDto } from "../dto/update-post.dto";

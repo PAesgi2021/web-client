@@ -1,22 +1,22 @@
-input:focus {
-  outline-width: 0;
-}
-
-input {
-  font-size: 13px;
-}
-
-.commentActions {
-  & > button:hover {
-    transform: scale(1.1);
-    transition: all .3s ease-out;
-  }
-
-  & > button:focus {
-    box-shadow: none;
-  }
-}
-
-textarea:focus {
-  outline: none;
-}
+//input:focus {
+//  outline-width: 0;
+//}
+//
+//input {
+//  font-size: 13px;
+//}
+//
+//.commentActions {
+//  & > button:hover {
+//    transform: scale(1.1);
+//    transition: all .3s ease-out;
+//  }
+//
+//  & > button:focus {
+//    box-shadow: none;
+//  }
+//}
+//
+//textarea:focus {
+//  outline: none;
+//}

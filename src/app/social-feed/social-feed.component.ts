@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from "../services/post-service/post.service";
 import { Post } from "../models/post";
-import { Router } from "@angular/router";
+import { FormControl } from "@angular/forms";
+import { DomSanitizer } from "@angular/platform-browser";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SocialFeedComponent implements OnInit {
 
   constructor(
     public postService: PostService,
-    private router: Router,
+    private _sanitizer: DomSanitizer
   ) {
   }
 
@@ -36,16 +37,26 @@ export class SocialFeedComponent implements OnInit {
       });
       this.handleIsFetching();
     });
-
   }
 
   handleIsFetching() {
     this.posts ? this.isFetching = false : this.isFetching = true;
-    console.log(this.posts);
   }
 
-  handleCreatePostAction() {
-    this.router.navigate(["/social-feed/create-post"]);
+  sortByDate(a: Post, b: Post) {
+    return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
   }
+
+  // handleTestImg(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
+  //
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     reader.onload = (event) => { // called once readAsDataURL is completed
+  //       this.url = event.target.result;
+  //     }
+  //   }
+  // }
+
 
 }

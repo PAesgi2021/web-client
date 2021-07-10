@@ -1,5 +1,6 @@
 export interface CreatePostDto {
-  title: string;
-  description?: string;
+  description: string;
   isPrivate: boolean;
+  image: string;
+  profile_id: number;
 }

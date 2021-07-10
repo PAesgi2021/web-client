@@ -1,11 +1,14 @@
 import { Message } from "../../models/message";
+import { Profile } from "../../models/profile";
 
 
 export interface PostDto {
   id: number;
-  title: string;
   description: string;
   isPrivate: boolean;
-  likes: number
+  likes: number;
+  createdAt: string;
+  updatedAt: string;
   comments: Message[];
+  profile: Profile;
 }
