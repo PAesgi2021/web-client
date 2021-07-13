@@ -10,6 +10,7 @@ import { LoginModule } from "./login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
+import {ProfileManagementModule} from "./profile-management/profile-management.module";
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { HttpClientModule } from "@angular/common/http";
     LoginModule,
     RegisterModule,
     SharedModule,
+    ProfileManagementModule,
     SocialFeedModule,
+
     /* import above this comment */
     AppRoutingModule
   ],
