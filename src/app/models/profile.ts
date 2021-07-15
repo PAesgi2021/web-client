@@ -1,3 +1,5 @@
+import {Post} from "./post";
+
 export interface IProfileProps {
   pseudo: string;
   firstname: string;
@@ -11,10 +13,10 @@ export class Profile {
   private _pseudo: string;
   private _firstname: string;
   private _lastname: string;
-  private _createdAt: string;
-  private _updatedAt: string;
+  private _createdAt: Date;
+  private _updatedAt: Date;
 
-  constructor(props: IProfileProps) {
+  constructor(props: { createdAt: Date; firstname: string; id: number; pseudo: string; posts: Post[]; account: Account; lastname: string; updatedAt: Date }) {
     this._pseudo = props.pseudo;
     this._firstname = props.firstname;
     this._lastname = props.lastname;
@@ -46,19 +48,19 @@ export class Profile {
     this._lastname = value;
   }
 
-  get createdAt(): string {
+  get createdAt(): Date {
     return this._createdAt;
   }
 
-  set createdAt(value: string) {
+  set createdAt(value: Date) {
     this._createdAt = value;
   }
 
-  get updatedAt(): string {
+  get updatedAt(): Date {
     return this._updatedAt;
   }
 
-  set updatedAt(value: string) {
+  set updatedAt(value: Date) {
     this._updatedAt = value;
   }
 }
