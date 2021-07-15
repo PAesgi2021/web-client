@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {AccountService} from "./services/account/account.service";
 
 
 @Component({
@@ -11,11 +12,11 @@ export class AppComponent {
   title = 'yourturn';
 
   constructor(
-    public router: Router
+    public router: Router,
+    public accountService: AccountService
   ) {
   }
   ngOnInit() {
-    this.router.navigate(['/login']);
   }
 
   elementHeight(tagName: string) {

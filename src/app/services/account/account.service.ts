@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {AccountDTO} from "../dto/account.dto";
 import {Account} from "../../models/account";
@@ -18,14 +18,15 @@ export class AccountService {
   constructor(
     private http: HttpClient
   ) {
+    this._isAuthenticated = false;
   }
 
   login(dto: AccountDTO): Observable<AccountDTO> {
     return this.http.post<AccountDTO>(this.API_URL + this.LOGIN_ROUTE, dto);
   }
 
-  register(dto: AccountDTO): Observable<AccountDTO> {
-    return this.http.post<AccountDTO>(this.API_URL, dto);
+  register(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
+    return this.http.post<AccountDTO>(this.API_URL, dto, {observe: 'response'});
   }
 
   loadAccount(account: AccountDTO): boolean {
