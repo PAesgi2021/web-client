@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,8 @@ import { LoginModule } from "./login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
+import {AccountService} from "./services/account/account.service";
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
     RegisterModule,
     SharedModule,
     SocialFeedModule,
+    FormsModule,
     /* import above this comment */
     AppRoutingModule
   ],
