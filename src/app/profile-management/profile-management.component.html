@@ -7,14 +7,14 @@
         <div class="col">
           <div *ngFor="let profile of profiles;" class="">
             <div><a class="profile-link" tabindex="0" href="/social-feed">
-              <span class="profile-name"> profile </span>
+              <span class="profile-name"> {{profile.pseudo}} </span>
             </a>
             </div>
           </div>
 
         </div>
 
-        <div class="col  text-center pe-5"><a href="/social-feed">
+        <div class="col  text-center "><a href="/create-profile">
         <span class="">créer un profil</span></a>
       </div>
       </ul>

@@ -1,0 +1,30 @@
+<div class="container h-100 d-flex justify-content-center align-items-center">
+  <form class="shadow border rounded px-5 pt-4 pb-2" [formGroup]="profileForm" (submit)="createProfile()">
+
+    <div class="mb-2">
+      <label for="pseudo" class="form-label">Pseudo</label>
+      <input type="text" class="form-control" formControlName="pseudo" id="pseudo" >
+    </div>
+    <div class="mb-2">
+      <label for="firstname" class="form-label">Firstname</label>
+      <input type="text" class="form-control" formControlName="firstname" id="firstname">
+    </div>
+    <div class="mb-2">
+      <label for="lastname" class="form-label">Lastname</label>
+      <input type="text" class="form-control" formControlName="lastname" id="lastname">
+    </div>
+
+    <div class="text-center mb-4" href="/login">
+      <a type="submit" class="btn btn-primary btn-sm px-4" href="/profile-management">
+        Create
+      </a>
+    </div>
+
+<!--    <div class="text-center mb-4" href="/login">-->
+<!--      <button type="submit" class="btn btn-primary btn-sm px-4" ><a href="/profile-management">-->
+<!--        Create-->
+<!--      </a></button>-->
+<!--    </div>-->
+
+  </form>
+</div>

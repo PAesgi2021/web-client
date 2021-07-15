@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
 import {ProfileManagementModule} from "./profile-management/profile-management.module";
+import {CreateProfileModule} from "./create-profile/create-profile.module";
 
 
 @NgModule({
@@ -24,12 +25,12 @@ import {ProfileManagementModule} from "./profile-management/profile-management.m
     SharedModule,
     ProfileManagementModule,
     SocialFeedModule,
-
+    CreateProfileModule,
     /* import above this comment */
     AppRoutingModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   providers: [
     SocialFeedModule,
