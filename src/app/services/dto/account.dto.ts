@@ -1,9 +1,8 @@
 import {Profile} from "../../models/profile";
 
-export interface AccountDto {
-  id: number;
-  username: string;
+export interface AccountDTO {
+  id?: number;
+  email: string;
   password: string;
-  profiles: Profile[];
-
+  profiles?: Profile[];
 }
