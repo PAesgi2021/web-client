@@ -34,7 +34,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login">Logout</a>
+          <a *ngIf="this.accountService.isAuthenticated" class="nav-link" href="login">Logout</a>
         </li>
       </ul>
     </div>
