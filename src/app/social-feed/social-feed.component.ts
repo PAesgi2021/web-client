@@ -26,9 +26,7 @@ export class SocialFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.accountService.isAuthenticated) {
-      this.router.navigate(['/login'])
-    }
+    console.log(this.accountService.isAuthenticated);
     this.fetchPosts();
   }
 
