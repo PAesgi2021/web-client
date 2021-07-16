@@ -1,4 +1,9 @@
-<div class="container h-100 d-flex justify-content-center align-items-center">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div class="container h-25 d-flex justify-content-center align-items-center">
+  <img alt="ibb" src="https://i.ibb.co/hfr0d11/5656485091-e6794f89-e205-44a2-956a-98cabb42dc20.png" width="300"/>
+</div>
+<div class="container h-50 d-flex justify-content-center align-items-center">
   <form class="shadow border rounded px-5 pt-4 pb-2" [formGroup]="profileForm" (submit)="createProfile()">
 
     <div class="mb-2">
@@ -15,16 +20,9 @@
     </div>
 
     <div class="text-center mb-4" href="/login">
-      <a type="submit" class="btn btn-primary btn-sm px-4" href="/profile-management">
+      <button type="submit" class="btn btn-primary btn-sm px-4">
         Create
-      </a>
+      </button>
     </div>
-
-<!--    <div class="text-center mb-4" href="/login">-->
-<!--      <button type="submit" class="btn btn-primary btn-sm px-4" ><a href="/profile-management">-->
-<!--        Create-->
-<!--      </a></button>-->
-<!--    </div>-->
-
   </form>
 </div>
