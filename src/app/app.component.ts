@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {AccountService} from "./services/account/account.service";
 
 
 @Component({
@@ -9,13 +10,15 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'yourturn';
+  showHeader = true;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public accountService: AccountService
   ) {
+
   }
   ngOnInit() {
-    this.router.navigate(['/login']);
   }
 
   elementHeight(tagName: string) {
@@ -25,5 +28,9 @@ export class AppComponent {
   bodyHeight() {
     const heightHF = this.elementHeight("app-header") + this.elementHeight("app-footer")
     return window.innerHeight - heightHF;
+  }
+
+  modifyHeader(location) { // This method is called many times
+    this.showHeader = !(location.url === '/login' || location.url === '/register');
   }
 }

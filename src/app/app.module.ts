@@ -13,7 +13,6 @@ import { HttpClientModule } from "@angular/common/http";
 import {ProfileManagementModule} from "./profile-management/profile-management.module";
 import {CreateProfileModule} from "./create-profile/create-profile.module";
 import {FormsModule} from "@angular/forms";
-import {AccountService} from "./services/account/account.service";
 
 
 @NgModule({
