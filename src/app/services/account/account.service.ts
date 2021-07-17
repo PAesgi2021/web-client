@@ -3,6 +3,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {AccountDTO} from "../dto/account.dto";
 import {Account} from "../../models/account";
+import {Token} from "../../models/token";
 
 @Injectable({
   providedIn: 'root'
@@ -21,22 +22,17 @@ export class AccountService {
     this._isAuthenticated = false;
   }
 
-  login(dto: AccountDTO): Observable<AccountDTO> {
-    return this.http.post<AccountDTO>(this.API_URL + this.LOGIN_ROUTE, dto);
+  login(dto: AccountDTO): Observable<HttpResponse<Token>> {
+    return this.http.post<Token>(this.API_URL + this.LOGIN_ROUTE, dto, {observe: 'response'});
   }
 
   register(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
     return this.http.post<AccountDTO>(this.API_URL, dto, {observe: 'response'});
   }
 
-  loadAccount(account: AccountDTO): boolean {
-      this.currentAccount = new Account({...account})
-      if (this.currentAccount.id) {
-        this._isAuthenticated = true;
-        return true;
-      } else {
-        return false;
-      }
+  loadToken(account: Token): boolean {
+    return true;
+
   }
 
   logout() {
