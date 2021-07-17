@@ -3,8 +3,8 @@ export interface IProfileProps {
   pseudo: string;
   firstname: string;
   lastname: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class Profile {
@@ -13,16 +13,16 @@ export class Profile {
   private _pseudo: string;
   private _firstname: string;
   private _lastname: string;
-  private _createdAt: string;
-  private _updatedAt: string;
+  private _createdAt: Date;
+  private _updatedAt: Date;
 
   constructor(props: IProfileProps) {
     this._id = props.id;
     this._pseudo = props.pseudo;
     this._firstname = props.firstname;
     this._lastname = props.lastname;
-    this._createdAt = props.createdAt;
-    this._updatedAt = props.updatedAt;
+    this._createdAt = (props.createdAt);
+    this._updatedAt = (props.updatedAt);
   }
 
   get pseudo(): string {
@@ -49,19 +49,19 @@ export class Profile {
     this._lastname = value;
   }
 
-  get createdAt(): string {
+  get createdAt(): Date {
     return this._createdAt;
   }
 
-  set createdAt(value: string) {
+  set createdAt(value: Date) {
     this._createdAt = value;
   }
 
-  get updatedAt(): string {
+  get updatedAt(): Date {
     return this._updatedAt;
   }
 
-  set updatedAt(value: string) {
+  set updatedAt(value: Date) {
     this._updatedAt = value;
   }
 
