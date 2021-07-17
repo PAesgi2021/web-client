@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,10 @@ import { LoginModule } from "./login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
+import {ProfileManagementModule} from "./profile-management/profile-management.module";
+import {CreateProfileModule} from "./create-profile/create-profile.module";
+import {FormsModule} from "@angular/forms";
+import { AdminModule } from "./admin/admin.module";
 
 
 @NgModule({
@@ -21,12 +25,16 @@ import { HttpClientModule } from "@angular/common/http";
     LoginModule,
     RegisterModule,
     SharedModule,
+    ProfileManagementModule,
     SocialFeedModule,
+    CreateProfileModule,
+    FormsModule,
+    AdminModule,
     /* import above this comment */
     AppRoutingModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   providers: [
     SocialFeedModule,

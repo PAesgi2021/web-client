@@ -3,6 +3,8 @@ import { PostService } from "../services/post-service/post.service";
 import { Post } from "../models/post";
 import { FormControl } from "@angular/forms";
 import { DomSanitizer } from "@angular/platform-browser";
+import {AccountService} from "../services/account/account.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,20 +16,28 @@ export class SocialFeedComponent implements OnInit {
 
   posts: Post[];
   isFetching = true;
+  searchPost = new FormControl('');
+
+  // -------------------------------------------------------------------------------------------------------------------
 
   constructor(
     public postService: PostService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    public accountService: AccountService,
+    public router: Router
   ) {
   }
 
   ngOnInit(): void {
+    if (!this.accountService.isAuthenticated) {
+      this.router.navigate(['/login'])
+    }
     this.fetchPosts();
   }
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  fetchPosts() {
+  public fetchPosts(): void {
     this.postService.getAllPost().subscribe(response => {
       this.posts = [];
       response.map(post => {
@@ -39,11 +49,15 @@ export class SocialFeedComponent implements OnInit {
     });
   }
 
-  handleIsFetching() {
+  public handleIsFetching(): void {
     this.posts ? this.isFetching = false : this.isFetching = true;
   }
 
-  sortByDate(a: Post, b: Post) {
+  public onPostCreated(newPost: Post): void {
+    this.posts.push(newPost);
+  }
+
+  public sortByDate(a: Post, b: Post): number {
     return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
   }
 

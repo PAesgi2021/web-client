@@ -1,0 +1,39 @@
+<div class="container w-50" xmlns="http://www.w3.org/1999/html">
+  <div class="row bg-white my-5 p-4 rounded">
+
+    <div class="text-center">
+      <h2>Create a Challenge</h2>
+    </div>
+    <form [formGroup]="createChallengeForm">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Tag</mat-label>
+        <input formControlName="tag" matInput placeholder="Ex. SaveTheWorld">
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Leave a description</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+      </mat-form-field>
+      <div *ngIf="createChallengeForm.get('image').value as image" class="text-center">
+        <img *ngIf="image.includes('data:image')" [src]="image" alt="" style="max-height: 500px; max-width: 500px;">
+        <video *ngIf="image.includes('data:video')" [src]="image" style="max-height: 500px; max-width: 500px;"
+               controls></video>
+      </div>
+      <br>
+      <input type="file" (change)="handleImageChange($event)" style="display: none" #fileInput>
+      <button mat-raised-button (click)="fileInput.click()">
+        Add image
+      </button>
+      <hr>
+      <div>
+        <button mat-raised-button color="warn" (click)="handleCancelAction()">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" class="float-end" (click)="handleSubmitClick()"
+                [disabled]="createChallengeForm.invalid">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

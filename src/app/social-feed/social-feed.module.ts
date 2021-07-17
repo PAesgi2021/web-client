@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import {MatInputModule} from '@angular/material/input';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatButtonModule } from "@angular/material/button";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     ReactiveFormsModule,
     MatInputModule,
     MatSlideToggleModule,
+    MatButtonModule,
   ],
   declarations: [
     SocialFeedComponent,

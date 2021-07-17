@@ -21,7 +21,7 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.messageDate = FileUtils.hoursDiff(new Date(Date.now()), new Date(this.message.date));
+    this.messageDate = FileUtils.hoursDiff(new Date(Date.now()), new Date(this.message.createAt));
     console.log(this.messageDate);
   }
 

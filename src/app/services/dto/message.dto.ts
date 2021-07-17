@@ -1,6 +1,6 @@
 export interface MessageDto {
   id: number,
   content: string,
-  date: string,
+  createAt: string,
   likes: number
 }

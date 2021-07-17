@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Form, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { PostService } from "../../services/post-service/post.service";
-import * as Buffer from "buffer";
+import { Post } from "../../models/post";
+import { CreatePostDto } from "../../services/dto/create-post.dto";
 
 
 @Component({
@@ -12,58 +13,57 @@ import * as Buffer from "buffer";
 })
 export class CreatePostComponent implements OnInit {
 
-  createPostForm = new FormGroup({
-    description: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    isPrivate: new FormControl(false),
-  });
-  image = '';
+  @Output()
+  public readonly postCreated: EventEmitter<Post>;
 
-  constructor(
+  public createPostForm: FormGroup;
+
+  private readonly defaultFormState: CreatePostDto = {
+    description: '',
+    isPrivate: false,
+    image: '',
+    profile_id: 1
+  };
+
+  public constructor(
     private router: Router,
     private postService: PostService
   ) {
+    this.postCreated = new EventEmitter<Post>();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.createPostForm = new FormGroup({
+      description: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      isPrivate: new FormControl(false),
+      image: new FormControl(''),
+      profile_id: new FormControl(1)
+    });
+
   }
 
-  onSubmitPost() {
+  public onSubmitPost(event: Event): void {
+    event.preventDefault();
     if (this.createPostForm.invalid) return;
 
-    this.postService.createPost({
-      description: this.createPostForm.get("description").value,
-      isPrivate: this.createPostForm.get("isPrivate").value,
-      image: this.image,
-      profile_id: 1
-    }).subscribe();
+    const newPost: CreatePostDto = this.createPostForm.value;
 
-    this.handleClose();
+    this.postService.createPost(newPost).subscribe((newPost: Post) => this.postCreated.emit(newPost));
+
+    this.createPostForm.reset(this.defaultFormState);
   }
 
-  handleClose() {
-    this.createPostForm.reset();
-    window.location.reload();
-  }
-
-  handleTestImg(event) {
+  public handleImageChange(event): void {
     if (!event.target.files || !event.target.files[0]) return;
 
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = () => {
-      this.image = reader.result as string;
+      this.createPostForm.get('image').setValue(reader.result as string);
+      console.log(file);
     }
 
     reader.readAsDataURL(file);
-  }
-
-  getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
   }
 }

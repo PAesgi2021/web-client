@@ -3,12 +3,14 @@
       {{post.profile.pseudo}}
       <p class="fw-light">{{postDate.toLocaleString()}}</p>
   </div>
-  <div class="border-top my-3 py-3">{{post.description}}</div>
-  <div class="border-bottom my-3 pb-3 text-center">
-    <img [src]="this.post.image" alt="" style="max-height: 500px; max-width: 500px;">
+  <div class="border-top pt-3">{{post.description}}</div>
+  <div class="text-center pt-3" *ngIf="this.post.image != ''">
+    <img *ngIf="this.post.image.includes('data:image')" [src]="this.post.image" alt="" style="max-height: 500px; max-width: 500px;">
+    <video *ngIf="this.post.image.includes('data:video')" [src]="this.post.image" style="max-height: 500px; max-width: 500px;" controls></video>
   </div>
 
   <!-- likes / comments -->
+  <hr>
   <div class="row">
     <div class="col">
       <button class="btn btn-sm" (click)="handleLikeAction()">
@@ -19,7 +21,7 @@
     <div class="col">
       <button class="btn btn-sm float-end" (click)="handleVisibilityCommentAction()">
         <i class="{{hideComments ? 'bi bi-chat-dots-fill' : 'bi bi-chat-dots'}}"></i>
-        {{this.post.comments.length}} comments
+        {{this.post.comments?.length}} comments
       </button>
     </div>
   </div>

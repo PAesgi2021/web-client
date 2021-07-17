@@ -1,17 +1,18 @@
 <div class="shadow bg-white rounded p-2">
-  <form [formGroup]="createPostForm" (submit)="onSubmitPost()">
+  <form [formGroup]="createPostForm" (submit)="onSubmitPost($event)">
     <mat-form-field class="w-100" appearance="fill">
       <mat-label>Create a new Challenge</mat-label>
       <textarea formControlName="description" matInput placeholder="Ex. save our planet"></textarea>
     </mat-form-field>
-    <div class="text-center" *ngIf="image != ''">
-      <img [src]="this.image" alt="" style="max-height: 500px; max-width: 500px;">
+    <div *ngIf="createPostForm.get('image').value as image" class="text-center">
+      <img *ngIf="image.includes('data:image')" [src]="image" alt="" style="max-height: 500px; max-width: 500px;">
+      <video *ngIf="image.includes('data:video')" [src]="image" style="max-height: 500px; max-width: 500px;" controls></video>
       <hr>
     </div>
     <mat-slide-toggle formControlName="isPrivate">Private</mat-slide-toggle>
     <hr>
     <div class="btn-group" role="group">
-      <input type="file" (change)="handleTestImg($event)" style="display: none" #fileInput>
+      <input type="file" (change)="handleImageChange($event)" style="display: none" #fileInput>
       <button type="button" (click)="fileInput.click()" class="btn btn-sm me-3">
         <i class="bi bi-images me-1"></i>Photo or Video
       </button>
