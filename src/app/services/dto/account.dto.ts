@@ -5,4 +5,5 @@ export interface AccountDTO {
   email: string;
   password: string;
   profiles?: Profile[];
+  access_token?: string;
 }

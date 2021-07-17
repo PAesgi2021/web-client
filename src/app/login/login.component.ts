@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('password').value
     }).subscribe(account => {
-      if (account.status == 201) {
+      if (account.status == 201 && this.accountService.loadCookie(account.body)) {
         this.isWait = false;
         setTimeout(() =>
           {
