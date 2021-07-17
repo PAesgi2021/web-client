@@ -29,9 +29,9 @@ export class SocialFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.accountService.isAuthenticated) {
-      this.router.navigate(['/login'])
-    }
+    // if (!this.accountService.isAuthenticated) {
+    //   this.router.navigate(['/login'])
+    // }
     this.fetchPosts();
   }
 
@@ -60,17 +60,5 @@ export class SocialFeedComponent implements OnInit {
   public sortByDate(a: Post, b: Post): number {
     return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
   }
-
-  // handleTestImg(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     var reader = new FileReader();
-  //
-  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
-  //     reader.onload = (event) => { // called once readAsDataURL is completed
-  //       this.url = event.target.result;
-  //     }
-  //   }
-  // }
-
 
 }

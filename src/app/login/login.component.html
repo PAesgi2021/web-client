@@ -1,29 +1,33 @@
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <div class="container h-100 d-flex justify-content-center align-items-center">
-      <img alt="ibb" src="https://i.ibb.co/hfr0d11/5656485091-e6794f89-e205-44a2-956a-98cabb42dc20.png" width="300"/>
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="container" style="max-width: 500px">
+    <div class="text-center pb-5">
+      <img src="https://i.ibb.co/hfr0d11/5656485091-e6794f89-e205-44a2-956a-98cabb42dc20.png" alt="ibb"/>
     </div>
-    <div class="container h-100 d-flex justify-content-center align-items-center">
-      <form [formGroup]="loginForm" (submit)="login()" class="shadow border rounded px-5 pt-4 pb-2">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input formControlName="password" type="password" class="form-control" id="password">
-        </div>
-        <div>
-          <mat-progress-spinner *ngIf="isWait" diameter="70" mode="indeterminate"
-                                style="margin:0 auto;"></mat-progress-spinner>
-        </div>
-        <div *ngIf="this.accountService.isAuthenticated">
-          <span class="v-align-middle" style="margin-left: 30px; margin-right: 15px">Successfully logged in !</span>
-          <i class="bi-check-lg"></i>
-        </div>
-        <div class="text-center mb-4">
-          <button style="margin-top: 10px" type="submit" class="btn btn-primary btn-sm px-4">Login</button>
-        </div>
-        <a href="register" class="link-secondary">Register</a>
-      </form>
-    </div>
+    <form [formGroup]="loginForm" (submit)="login()" class="shadow border rounded px-3 pt-4 pb-2 mx-auto">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Email address</mat-label>
+        <input id="email" formControlName="email" type="email" matInput placeholder="Ex. toto@gmail.com">
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input id="password" formControlName="password" type="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div>
+        <mat-progress-spinner *ngIf="isWait" diameter="70" mode="indeterminate"
+                              style="margin:0 auto;"></mat-progress-spinner>
+      </div>
+      <div *ngIf="this.accountService.isAuthenticated">
+        <span class="v-align-middle" style="margin-left: 30px; margin-right: 15px">Successfully logged in !</span>
+        <i class="bi-check-lg"></i>
+      </div>
+      <div class="text-center mb-4">
+        <button type="submit" class="w-100" mat-raised-button color="primary">Login</button>
+      </div>
+      <a mat-button href="register">Register</a>
+    </form>
+  </div>
+</div>

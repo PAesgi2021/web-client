@@ -6,6 +6,9 @@ import { RegisterComponent } from './register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    RegisterRoutingModule
+    RegisterRoutingModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
