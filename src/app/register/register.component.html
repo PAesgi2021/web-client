@@ -1,25 +1,34 @@
-<div class="container h-100 d-flex justify-content-center align-items-center">
-  <form [formGroup]="registerForm" (submit)="register()" class="shadow border rounded p-5">
-    <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="container shadow rounded p-4" style="max-width: 500px">
+    <div class="row text-center">
+      <h2>Register</h2>
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <div class="d-flex align-items-center form-control">
-        <input formControlName="password" type="{{hide ? 'password' : 'text'}}" class="border-0" id="password">
-        <i class="{{hide ? eye : eyeSlashed}}" (click)="handleHide()"></i>
+    <form [formGroup]="registerForm" (submit)="register()">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Email address</mat-label>
+        <input id="email" formControlName="email" type="email" matInput placeholder="Ex. toto@gmail.com">
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input id="password" formControlName="password" type="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div>
+        <mat-progress-spinner *ngIf="isWait" diameter="70" mode="indeterminate"
+                              style="margin:0 auto;"></mat-progress-spinner>
       </div>
-    </div>
-    <div>
-      <mat-progress-spinner *ngIf="isWait" diameter="70" mode="indeterminate" style="margin:0 auto;" ></mat-progress-spinner>
-    </div>
-    <div *ngIf="isRegistered">
-      <span class="v-align-middle" style="margin-left: 30px; margin-right: 15px">Successfully registered !</span>
-      <i class="bi-check-lg"></i>
-    </div>
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary btn-sm px-4">Signup</button>
-    </div>
-  </form>
+      <div *ngIf="isRegistered">
+        <span class="v-align-middle" style="margin-left: 30px; margin-right: 15px">Successfully registered !</span>
+        <i class="bi-check-lg"></i>
+      </div>
+
+      <div class="text-center">
+        <button type="reset" class="float-start" mat-raised-button color="warn">Cancel</button>
+        <button type="submit" class="float-end" mat-raised-button color="primary">Signup</button>
+      </div>
+    </form>
+  </div>
 </div>

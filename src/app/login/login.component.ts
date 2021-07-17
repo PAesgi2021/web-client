@@ -11,12 +11,9 @@ import {Route, Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
-
+  loginForm: FormGroup;
   isWait: boolean;
+  hide: boolean;
 
   constructor(
     public accountService: AccountService,
@@ -26,6 +23,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isWait = false;
+    this.hide = true;
+
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
 
   getErrorMessage() {
