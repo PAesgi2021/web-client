@@ -7,6 +7,7 @@ import { MessageDto } from "../dto/message.dto";
 import { UpdatePostDto } from "../dto/update-post.dto";
 import { PostDto } from "../dto/post.dto";
 import { UpdateMessageDto } from "../dto/update-message.dto";
+import { ChallengeDto } from "../dto/challenge.dto";
 
 
 @Injectable({
@@ -21,6 +22,10 @@ export class MessageService {
   }
 
   // -------------------------------------------------------------------------------------------------------------------
+
+  getAllMessage(): Observable<MessageDto[]> {
+    return this.http.get<MessageDto[]>(this.API_URL, {responseType: 'json'});
+  }
 
   createMessage(dto: CreateMessageDto): Observable<MessageDto> {
     return this.http.post<MessageDto>(this.API_URL, dto);

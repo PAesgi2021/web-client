@@ -14,20 +14,22 @@ export class SocialFeedComponent implements OnInit {
 
   posts: Post[];
   isFetching = true;
+  searchPost = new FormControl('');
+
+  // -------------------------------------------------------------------------------------------------------------------
 
   constructor(
     public postService: PostService,
-    private _sanitizer: DomSanitizer
   ) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.fetchPosts();
   }
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  fetchPosts() {
+  public fetchPosts(): void {
     this.postService.getAllPost().subscribe(response => {
       this.posts = [];
       response.map(post => {
@@ -39,11 +41,15 @@ export class SocialFeedComponent implements OnInit {
     });
   }
 
-  handleIsFetching() {
+  public handleIsFetching(): void {
     this.posts ? this.isFetching = false : this.isFetching = true;
   }
 
-  sortByDate(a: Post, b: Post) {
+  public onPostCreated(newPost: Post): void {
+    this.posts.push(newPost);
+  }
+
+  public sortByDate(a: Post, b: Post): number {
     return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
   }
 

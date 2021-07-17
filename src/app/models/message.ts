@@ -1,7 +1,7 @@
 export interface IMessageProps {
   id?: number
   content?: string;
-  date?: string;
+  createAt?: string;
   likes?: number;
 }
 
@@ -9,13 +9,13 @@ export class Message {
 
   private _id: number
   private _content: string;
-  private _date?: string;
+  private _createAt?: string;
   private _likes: number;
 
   constructor(props: IMessageProps) {
     this._id = props.id;
     this._content = props.content;
-    this._date = props.date;
+    this._createAt = props.createAt;
     this._likes = props.likes;
   }
 
@@ -45,11 +45,11 @@ export class Message {
     this._likes = value;
   }
 
-  get date(): string {
-    return this._date;
+  get createAt(): string {
+    return this._createAt;
   }
 
-  set date(value: string) {
-    this._date = value;
+  set createAt(value: string) {
+    this._createAt = value;
   }
 }

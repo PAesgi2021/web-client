@@ -1,4 +1,5 @@
 export interface IProfileProps {
+  id?: number;
   pseudo: string;
   firstname: string;
   lastname: string;
@@ -8,6 +9,7 @@ export interface IProfileProps {
 
 export class Profile {
 
+  private _id: number;
   private _pseudo: string;
   private _firstname: string;
   private _lastname: string;
@@ -15,6 +17,7 @@ export class Profile {
   private _updatedAt: string;
 
   constructor(props: IProfileProps) {
+    this._id = props.id;
     this._pseudo = props.pseudo;
     this._firstname = props.firstname;
     this._lastname = props.lastname;
@@ -60,5 +63,13 @@ export class Profile {
 
   set updatedAt(value: string) {
     this._updatedAt = value;
+  }
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
   }
 }

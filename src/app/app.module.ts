@@ -10,6 +10,7 @@ import { LoginModule } from "./login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
+import { AdminModule } from "./admin/admin.module";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HttpClientModule } from "@angular/common/http";
     RegisterModule,
     SharedModule,
     SocialFeedModule,
+    AdminModule,
     /* import above this comment */
     AppRoutingModule
   ],

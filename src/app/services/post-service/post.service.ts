@@ -24,7 +24,7 @@ export class PostService {
   }
 
   createPost(dto: CreatePostDto): Observable<PostDto> {
-    return this.http.post<PostDto>(this.API_URL, dto);
+    return this.http.post<PostDto>(this.API_URL, {...dto, });
   }
 
   updatePost(id: number, dto: UpdatePostDto): Observable<PostDto> {
