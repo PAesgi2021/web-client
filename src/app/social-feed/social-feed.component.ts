@@ -28,6 +28,11 @@ export class SocialFeedComponent implements OnInit {
     public router: Router,
     public location: Location
   ) {
+    this.accountService.isAuthenticated().subscribe( value => {
+      if (!value) {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   ngOnInit(): void {

@@ -67,7 +67,6 @@ export class AccountService {
 
   isAuthenticated(): Observable<boolean> {
     if (this.httpService.getCookie() == null) {
-      this.router.navigate(['/login'])
       return of(false);
     }
     return this.http.post<HttpStatusCode>(this.API_URL + this.IS_AUTHENTICATED_ROUTE, {

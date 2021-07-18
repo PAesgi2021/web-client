@@ -20,11 +20,6 @@ export class AppComponent {
   ) {
   }
   ngOnInit() {
-    async () => {
-      if (!await this.accountService.isAuthenticated()) {
-        this.router.navigate(['/login']);
-      }
-    }
   }
 
   elementHeight(tagName: string) {

@@ -14,10 +14,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public accountService: AccountService) {
+    this.isLogged = this.accountService.isAuthenticated();
   }
 
   ngOnInit(): void {
-    this.isLogged = this.accountService.isAuthenticated();
   }
 
 }
