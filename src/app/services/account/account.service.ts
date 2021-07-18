@@ -85,4 +85,12 @@ export class AccountService {
     }));
   }
 
+  checkAuthentication() {
+    this.isAuthenticated().subscribe( value => {
+      if (!value) {
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
 }
