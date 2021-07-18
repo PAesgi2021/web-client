@@ -7,7 +7,7 @@ import { PostComponent } from './post/post.component';
 import { SharedModule } from "../shared/shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CreatePostComponent } from './create-post/create-post.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from '../shared/menu/menu.component';
 import { FriendListComponent } from './friend-list/friend-list.component';
 import {MatInputModule} from '@angular/material/input';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -24,6 +24,9 @@ import { MatButtonModule } from "@angular/material/button";
     MatInputModule,
     MatSlideToggleModule,
     MatButtonModule,
+  ],
+  exports: [
+    MenuComponent
   ],
   declarations: [
     SocialFeedComponent,

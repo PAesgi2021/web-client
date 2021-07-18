@@ -14,6 +14,7 @@ import {ProfileManagementModule} from "./profile-management/profile-management.m
 import {CreateProfileModule} from "./create-profile/create-profile.module";
 import {FormsModule} from "@angular/forms";
 import { AdminModule } from "./admin/admin.module";
+import { ShopModule } from "./shop/shop.module";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AdminModule } from "./admin/admin.module";
     CreateProfileModule,
     FormsModule,
     AdminModule,
+    ShopModule,
     /* import above this comment */
     AppRoutingModule
   ],

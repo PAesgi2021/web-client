@@ -7,8 +7,9 @@ const routes: Routes = [
   {path: "social-feed", loadChildren: () => import('./social-feed/social-feed.module').then(m => m.SocialFeedModule)},
   {path: "register", loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)},
   {path: "profile", loadChildren: () => import('./profile-management/profile-management.module').then(m => m.ProfileManagementModule)},
-  {path: '', redirectTo: "social-feed", pathMatch: 'full'},
   {path: "admin", loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  {path: "shop", loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)},
+  {path: '', redirectTo: "social-feed", pathMatch: 'full'},
   {path: "**", redirectTo: "social-feed"}
 ];
 
