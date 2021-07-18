@@ -12,6 +12,20 @@
         <li class="nav-item">
           <a *ngIf="(this.isLogged | async)" class="nav-link" (click)="this.accountService.logout()">Logout</a>
         </li>
+        <li class="nav-item">
+          <a *ngIf="(this.isLogged | async)" class="nav-link" (click)="this.profileService.profileView()">Profile</a>
+        </li>
+
+        <li *ngIf="(this.isLogged | async)" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{profileName}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="profile/view">Profile card</a></li>
+            <li><a class="dropdown-item" href="profile">Profile</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>

@@ -6,6 +6,7 @@ import {AccountService} from "../services/account/account.service";
 import {Router} from "@angular/router";
 import {Location} from '@angular/common';
 import {FormControl} from "@angular/forms";
+import {ProfileService} from "../services/profile-service/profile.service";
 
 
 @Component({
@@ -26,9 +27,10 @@ export class SocialFeedComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     public accountService: AccountService,
     public router: Router,
-    public location: Location
+    private profileService: ProfileService,
   ) {
     this.accountService.checkAuthentication();
+    this.profileService.isSelected();
   }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class SocialFeedComponent implements OnInit {
       this.handleIsFetching();
     });
   }
+
 
   public handleIsFetching(): void {
     this.posts ? this.isFetching = false : this.isFetching = true;

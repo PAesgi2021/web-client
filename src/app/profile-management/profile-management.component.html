@@ -6,7 +6,7 @@
       <ul class="row">
         <div class="col">
           <div *ngFor="let profile of profiles;" class="">
-            <div><a class="profile-link" tabindex="0" href="/social-feed">
+            <div><a class="profile-link" tabindex="0" (click)="setCurrentProfile(profile)" >
               <span class="profile-name"> {{profile.pseudo}} </span>
             </a>
             </div>
@@ -14,7 +14,7 @@
 
         </div>
 
-        <div class="col  text-center "><a href="/create-profile">
+        <div class="col  text-center "><a href="/profile/create">
         <span class="">créer un profil</span></a>
       </div>
       </ul>

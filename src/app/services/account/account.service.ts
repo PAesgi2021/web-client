@@ -8,6 +8,7 @@ import {catchError, switchMap} from "rxjs/operators";
 import {FileUtils} from "../../utils/file-utils";
 import {Router} from "@angular/router";
 import {HttpService} from "../utils/http.service";
+import {Account} from "../../models/account";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,11 @@ export class AccountService {
   ) {
   }
 
+  getAccountById(): Observable<AccountDTO> {
+    console.log(this.httpService.getCookie().account_id);
+    return this.http.get<AccountDTO>(this.API_URL + '/' +this.httpService.getCookie().account_id);
+  }
+
   login(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
     return this.http.post<AccountDTO>(this.API_URL + this.LOGIN_ROUTE, dto, {
       observe: 'response',
@@ -35,6 +41,8 @@ export class AccountService {
     );
   }
 
+
+
   register(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
     return this.http.post<AccountDTO>(this.API_URL, dto, {observe: 'response'});
   }
@@ -43,7 +51,8 @@ export class AccountService {
     const cookieValue: ICookieProps = {
       email: account.email,
       account_id: account.id,
-      access_token: account.access_token
+      access_token: account.access_token,
+      current_profile_name: undefined,
     };
     // Transform object to JSON then transform JSON to raw string
     const JSONcookie = JSON.stringify(cookieValue);
@@ -63,9 +72,11 @@ export class AccountService {
   logout() {
     this.cookieService.deleteAll();
     this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   isAuthenticated(): Observable<boolean> {
+
     if (this.httpService.getCookie() == null) {
       return of(false);
     }

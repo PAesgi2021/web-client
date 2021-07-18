@@ -60,10 +60,14 @@ export class LoginComponent implements OnInit {
           if (res) {
             this.isLoggedIn = true;
             setTimeout(() => {
-                this.router.navigate(['/social-feed']);
+                this.router.navigate(['/profile']).then(() => {
+                window.location.reload();
+                });
               },
-              880);
+              1500);
           }
+
+
         })
       } else {
         this.isWait = false;
