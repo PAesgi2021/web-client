@@ -20,7 +20,7 @@ export class HttpService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
-    })
+    });
     return headers;
   }
 
@@ -29,5 +29,11 @@ export class HttpService {
       return JSON.parse(this.cookieService.get('yourturncookie')) as Cookie
     }
     return null;
+  }
+
+  setCookie(newCookie: Cookie) {
+    // Transform object to JSON then transform JSON to raw string
+    const JSONcookie = JSON.stringify(newCookie);
+    this.cookieService.set('yourturncookie', JSONcookie.toString());
   }
 }

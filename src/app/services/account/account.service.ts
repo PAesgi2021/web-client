@@ -71,7 +71,8 @@ export class AccountService {
     }
     return this.http.post<HttpStatusCode>(this.API_URL + this.IS_AUTHENTICATED_ROUTE, {
       observe: 'response',
-    }, {headers: this.httpService.getHeadersForRequest()}).pipe(
+    }, {headers: this.httpService.getHeadersForRequest()})
+      .pipe(
       catchError(async (error) => FileUtils.handleErrorObservable(error))
     ).pipe(switchMap((res) => {
       if (res == 202) {
