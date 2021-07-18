@@ -1,43 +1,45 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse, HttpStatusCode} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {AccountDTO} from "../dto/account.dto";
-import {Account} from "../../models/account";
-import {Token} from "../../models/token";
 import {CookieService} from "ngx-cookie-service";
 import {Cookie, ICookieProps} from "../../models/cookie";
-import {switchMap} from "rxjs/operators";
+import {catchError, switchMap} from "rxjs/operators";
+import {FileUtils} from "../../utils/file-utils";
+import {Router} from "@angular/router";
+import {HttpService} from "../utils/http.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private _isAuthenticated: boolean;
-
-  private API_URL: string = "http://localhost:3000/yt-account";
+  private API_URL: string = "http://127.0.0.1:3000/yt-account";
   private LOGIN_ROUTE: string = "/login";
   private IS_AUTHENTICATED_ROUTE = "/isAuthenticated"
 
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router,
+    private httpService: HttpService
   ) {
-    this._isAuthenticated = false;
   }
 
   login(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
     return this.http.post<AccountDTO>(this.API_URL + this.LOGIN_ROUTE, dto, {
       observe: 'response',
       withCredentials: true
-    });
+    }).pipe(
+      catchError(async (error) => FileUtils.handleErrorObservable(error))
+    );
   }
 
   register(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
     return this.http.post<AccountDTO>(this.API_URL, dto, {observe: 'response'});
   }
 
-  loadCookie(account: AccountDTO): boolean {
+  async loadCookie(account: AccountDTO): Promise<boolean> {
     const cookieValue: ICookieProps = {
       email: account.email,
       account_id: account.id,
@@ -59,16 +61,23 @@ export class AccountService {
   }
 
   logout() {
-    //TODO request api to revoke token
+    this.cookieService.deleteAll()
   }
 
-  public get isAuthenticated(): Observable<boolean> {
-    return this.http.post<HttpResponse<void>>(this.API_URL + this.IS_AUTHENTICATED_ROUTE, {
+  isAuthenticated(): Observable<boolean> {
+    if (this.httpService.getCookie() == null) {
+      this.router.navigate(['/login'])
+      return of(false);
+    }
+    return this.http.post<HttpStatusCode>(this.API_URL + this.IS_AUTHENTICATED_ROUTE, {
       observe: 'response',
-      withCredentials: true
-    }).pipe(switchMap((res) => {
-      if (res.status == 201) {
+    }, {headers: this.httpService.getHeadersForRequest()}).pipe(
+      catchError(async (error) => FileUtils.handleErrorObservable(error))
+    ).pipe(switchMap((res) => {
+      if (res == 202) {
         return of(true);
+      } else if (res.status == 401) {
+        return of(false);
       } else {
         return of(false);
       }

@@ -18,10 +18,13 @@ export class AppComponent {
     public accountService: AccountService,
     private cookieService: CookieService
   ) {
-
   }
   ngOnInit() {
-    //this.accountService.isAuthenticated()
+    async () => {
+      if (!await this.accountService.isAuthenticated()) {
+        this.router.navigate(['/login']);
+      }
+    }
   }
 
   elementHeight(tagName: string) {

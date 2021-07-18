@@ -36,7 +36,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a *ngIf="this.accountService.isAuthenticated" class="nav-link" href="login">Logout</a>
+          <a *ngIf="(this.isLogged | async)" class="nav-link" (click)="this.accountService.logout()">Logout</a>
         </li>
       </ul>
     </div>

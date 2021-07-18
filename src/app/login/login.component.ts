@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../services/account/account.service";
 import {Route, Router} from "@angular/router";
+import {error} from "@angular/compiler/src/util";
 
 
 @Component({
@@ -17,6 +18,8 @@ export class LoginComponent implements OnInit {
   });
 
   isWait: boolean;
+  isLoggedIn: boolean;
+  notRegistered: boolean;
 
   constructor(
     public accountService: AccountService,
@@ -26,6 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isWait = false;
+    this.isLoggedIn = false;
+    this.notRegistered = false;
   }
 
   getErrorMessage() {
@@ -45,14 +50,21 @@ export class LoginComponent implements OnInit {
     this.accountService.login({
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('password').value
-    }).subscribe(account => {
-      if (account.status == 201 && this.accountService.loadCookie(account.body)) {
+    }).subscribe(async account => {
+      if (account.status == 201 && await this.accountService.loadCookie(account.body)) {
         this.isWait = false;
-        setTimeout(() =>
-          {
-            this.router.navigate(['/social-feed']);
-          },
-          880);
+        this.accountService.isAuthenticated().subscribe( res => {
+          if (res) {
+            this.isLoggedIn = true;
+            setTimeout(() => {
+                this.router.navigate(['/social-feed']);
+              },
+              880);
+          }
+        })
+      } else {
+        this.isWait = false;
+        this.notRegistered = true;
       }
     });
 
