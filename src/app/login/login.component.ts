@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   isWait: boolean;
   isLoggedIn: boolean;
   notRegistered: boolean;
+  hide: boolean;
 
   constructor(
     public accountService: AccountService,

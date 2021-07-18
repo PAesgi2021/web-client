@@ -61,7 +61,8 @@ export class AccountService {
   }
 
   logout() {
-    this.cookieService.deleteAll()
+    this.cookieService.deleteAll();
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated(): Observable<boolean> {
