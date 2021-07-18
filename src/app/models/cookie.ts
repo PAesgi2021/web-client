@@ -3,6 +3,8 @@ export interface ICookieProps {
   email: string;
   current_profile_id?: number;
   access_token: string;
+  current_profile_name?: string;
+
 }
 
 export class Cookie {
@@ -11,13 +13,15 @@ export class Cookie {
   private _email: string;
   private _current_profile_id: number;
   private _access_token: string;
+  private _current_profile_name: string;
 
 
   constructor( props: ICookieProps) {
-    this._account_id = props.account_id
-    this._email = props.email
+    this._account_id = props.account_id;
+    this._email = props.email;
     this._current_profile_id = props.current_profile_id ? props.current_profile_id : undefined;
-    this._access_token = props.access_token
+    this._access_token = props.access_token;
+    this._current_profile_name = props.current_profile_name ? props.current_profile_name : undefined;
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -43,7 +47,7 @@ export class Cookie {
     return this._current_profile_id;
   }
 
-  set profile_id(value: number) {
+  set current_profile_id(value: number) {
     this._current_profile_id = value;
   }
 
@@ -54,4 +58,14 @@ export class Cookie {
   set access_token(value: string) {
     this._access_token = value;
   }
+
+
+  get current_profile_name(): string {
+    return this._current_profile_name;
+  }
+
+  set current_profile_name(value: string) {
+    this._current_profile_name = value;
+  }
+
 }

@@ -18,6 +18,8 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatCardModule } from "@angular/material/card";
 import { CreateChallengeComponent } from './create-challenge/create-challenge.component';
+import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 @NgModule({
@@ -40,13 +42,15 @@ import { CreateChallengeComponent } from './create-challenge/create-challenge.co
     CommentComponent,
     SpinnerComponent,
     CreatePostComponent,
-    CreateChallengeComponent
+    CreateChallengeComponent,
+    CreateProfileComponent,
+    ViewProfileComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     CommentComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ]
 })
 export class SharedModule {

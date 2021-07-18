@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProfileService} from "../services/profile-service/profile.service";
+import {ProfileService} from "../../services/profile-service/profile.service";
 import {Router} from "@angular/router";
+import {HttpService} from "../../services/utils/http.service";
+import {AccountService} from "../../services/account/account.service";
 
 @Component({
   selector: 'app-create-profile',
@@ -16,11 +18,11 @@ export class CreateProfileComponent implements OnInit {
     lastname: new FormControl('', [Validators.required, Validators.minLength(1)]),
   })
 
-
-
   constructor(
     public profileService: ProfileService,
     public router: Router,
+    public httpsService: HttpService,
+    public accountService: AccountService,
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +38,9 @@ export class CreateProfileComponent implements OnInit {
       pseudo: this.profileForm.get('pseudo').value,
       firstName: this.profileForm.get('firstname').value,
       lastName: this.profileForm.get('lastname').value,
-      account_id: 1
+      account_id: this.httpsService.getCookie().account_id,
     }).subscribe();
-    this.router.navigate(['/profile-management'])
+    this.router.navigate(['/profile']).then( () => window.location.reload());
   }
-
 
 }

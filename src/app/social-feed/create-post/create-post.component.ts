@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { PostService } from "../../services/post-service/post.service";
 import { Post } from "../../models/post";
 import { CreatePostDto } from "../../services/dto/create-post.dto";
+import {HttpService} from "../../services/utils/http.service";
+import {AccountService} from "../../services/account/account.service";
 
 
 @Component({
@@ -22,14 +24,17 @@ export class CreatePostComponent implements OnInit {
     description: '',
     isPrivate: false,
     image: '',
-    profile_id: 1
+    profile_id: this.httpService.getCookie().current_profile_id
   };
 
   public constructor(
     private router: Router,
-    private postService: PostService
+    private postService: PostService,
+    private httpService: HttpService,
+    private accountService: AccountService,
   ) {
     this.postCreated = new EventEmitter<Post>();
+    this.accountService.checkAuthentication();
   }
 
   public ngOnInit(): void {
@@ -37,7 +42,7 @@ export class CreatePostComponent implements OnInit {
       description: new FormControl('', [Validators.required, Validators.minLength(1)]),
       isPrivate: new FormControl(false),
       image: new FormControl(''),
-      profile_id: new FormControl(1)
+      profile_id: new FormControl(this.httpService.getCookie().current_profile_id)
     });
 
   }
