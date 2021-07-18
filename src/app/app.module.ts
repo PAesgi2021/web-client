@@ -13,6 +13,7 @@ import { HttpClientModule } from "@angular/common/http";
 import {ProfileManagementModule} from "./profile-management/profile-management.module";
 import {CreateProfileModule} from "./create-profile/create-profile.module";
 import {FormsModule} from "@angular/forms";
+import {CookieService} from "ngx-cookie-service";
 import { AdminModule } from "./admin/admin.module";
 
 
@@ -37,6 +38,7 @@ import { AdminModule } from "./admin/admin.module";
     AppComponent,
   ],
   providers: [
+    CookieService,
     SocialFeedModule,
     LoginModule
   ],

@@ -4,6 +4,8 @@ import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { CommentComponent } from './comment/comment.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import {AppModule} from "../app.module";
+import {CookieService} from "ngx-cookie-service";
 import { CreatePostComponent } from './create-post/create-post.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";

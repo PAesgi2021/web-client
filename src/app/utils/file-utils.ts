@@ -1,4 +1,5 @@
 import { Post } from "../models/post";
+import {HttpResponse} from "@angular/common/http";
 
 
 export class FileUtils {
@@ -14,6 +15,10 @@ export class FileUtils {
 
   public static sortByDate(a: Post, b: Post) {
     return (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-
   }
+
+  static handleErrorObservable(error: Response | any) {
+    return new HttpResponse<any>({status: error.status})
+  }
+
 }

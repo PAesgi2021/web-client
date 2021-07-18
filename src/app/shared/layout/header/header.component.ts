@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from "../../../services/account/account.service";
+import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-header',
@@ -8,11 +10,14 @@ import {AccountService} from "../../../services/account/account.service";
 })
 export class HeaderComponent implements OnInit {
   hide = true;
+  isLogged: Observable<boolean>;
 
   constructor(
-    public accountService: AccountService) { }
+    public accountService: AccountService) {
+  }
 
   ngOnInit(): void {
+    this.isLogged = this.accountService.isAuthenticated();
   }
 
 }
