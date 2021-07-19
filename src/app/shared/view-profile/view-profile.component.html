@@ -1,42 +1,40 @@
-<link rel="stylesheet" href="view-profile.component.scss">
-<div class="container border h3 mt-5 text-center">
-profile Card
-</div>
-<div class="ms-5 w-50">
-  <table class="table table-borderless">
-    <tbody class="">
-    <tr class="">
-      <th scope="row" class="">Nickname :</th>
-      <td class="">{{profile.pseudo}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Firstname :</th>
-      <td>{{profile.firstname}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Lastname :</th>
-      <td colspan="2">{{profile.firstname}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Email :</th>
-      <td colspan="2">{{account.email}}]</td>
-    </tr>
-    <tr>
-      <th scope="row">Password :</th>
-      <td colspan="2">{{account.password}}</td>
-    </tr>
-    <tr>
-      <th scope="row">creation Date :</th>
-      <td colspan="2">{{profile.createdAt}}</td>
-    </tr>
-  </table>
+<ng-container *ngIf="isFetching; else page">
+  <app-spinner></app-spinner>
+</ng-container>
 
-</div>
+<ng-template #page>
 
-<div class="border mt-2 ">
-<!--  <button class="ms-5 me-3">Modifier</button>-->
-  <button class="btn ms-5 bg-primary btn-sm text-white" (click)="deleteProfile()">supprimer</button>
+  <div class="container border h3 mt-5 text-center">
+    profile Card
+  </div>
+  <div class="ms-5 w-50">
+    <table class="table table-borderless">
+      <tbody class="">
+      <tr class="">
+        <th scope="row" class="">Nickname :</th>
+        <td class="">{{profile.pseudo}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Firstname :</th>
+        <td>{{profile.firstname}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Lastname :</th>
+        <td colspan="2">{{profile.lastname}}</td>
+      </tr>
+      <tr>
+        <th scope="row">creation Date :</th>
+        <td colspan="2">{{profile.createdAt}}</td>
+      </tr>
+    </table>
 
-</div>
+  </div>
+
+  <div class="border mt-2 ">
+    <!--  <button class="ms-5 me-3">Modifier</button>-->
+    <button class="btn ms-5 bg-primary btn-sm text-white" (click)="deleteProfile()">supprimer</button>
+
+  </div>
 
 
+</ng-template>

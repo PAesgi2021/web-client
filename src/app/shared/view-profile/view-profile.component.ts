@@ -16,6 +16,7 @@ export class ViewProfileComponent implements OnInit {
 
   profile: Profile;
   account: Account;
+  isFetching: boolean = true;
 
   constructor(
     private accountService: AccountService,
@@ -23,22 +24,35 @@ export class ViewProfileComponent implements OnInit {
     private httpService: HttpService,
     private router: Router,
   ) {
-    this.accountService.checkAuthentication();
   }
 
   ngOnInit(): void {
+    this.fetchProfileById();
   }
 
-  deleteProfile() {
+  public fetchProfileById(): void {
+    this.profileService.getProfileById(this.httpService.getCookie().current_profile_id).subscribe(value => {
+      console.log(value);
+      this.profile = new Profile({
+          ...value
+        })
+      });
+    this.handleIsFetching();
+  }
+
+  public handleIsFetching(): void {
+    this.profile ? this.isFetching = false : this.isFetching = true;
+  }
+
+
+  public deleteProfile(): void {
     this.profileService.deleteProfile(this.httpService.getCookie().current_profile_id);
     // this.router.navigate(['/profile']).then( () => {
     //   window.location.reload();
     // })
   }
 
-  setInformations() {
 
-  }
 
 
 
