@@ -8,6 +8,6 @@ export interface ProfileDto {
   createdAt: Date;
   updatedAt: Date;
   account: Account;
-  //profileRoles:
+  roles: string[];
   posts: Post[];
 }
