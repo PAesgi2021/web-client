@@ -1,8 +1,8 @@
 export interface IProfileProps {
   id?: number;
   pseudo: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,8 +19,8 @@ export class Profile {
   constructor(props: IProfileProps) {
     this._id = props.id;
     this._pseudo = props.pseudo;
-    this._firstname = props.firstname;
-    this._lastname = props.lastname;
+    this._firstname = props.firstName;
+    this._lastname = props.lastName;
     this._createdAt = (props.createdAt);
     this._updatedAt = (props.updatedAt);
   }

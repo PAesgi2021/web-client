@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {AccountService} from "./services/account/account.service";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -14,9 +15,9 @@ export class AppComponent {
 
   constructor(
     public router: Router,
-    public accountService: AccountService
+    public accountService: AccountService,
+    private cookieService: CookieService
   ) {
-
   }
   ngOnInit() {
   }

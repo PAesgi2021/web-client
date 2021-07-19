@@ -11,8 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
 import {ProfileManagementModule} from "./profile-management/profile-management.module";
-import {CreateProfileModule} from "./create-profile/create-profile.module";
 import {FormsModule} from "@angular/forms";
+import {CookieService} from "ngx-cookie-service";
 import { AdminModule } from "./admin/admin.module";
 import { ShopModule } from "./shop/shop.module";
 
@@ -28,7 +28,6 @@ import { ShopModule } from "./shop/shop.module";
     SharedModule,
     ProfileManagementModule,
     SocialFeedModule,
-    CreateProfileModule,
     FormsModule,
     AdminModule,
     ShopModule,
@@ -39,6 +38,7 @@ import { ShopModule } from "./shop/shop.module";
     AppComponent,
   ],
   providers: [
+    CookieService,
     SocialFeedModule,
     LoginModule
   ],

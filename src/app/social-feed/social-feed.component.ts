@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from "../services/post-service/post.service";
-import { Post } from "../models/post";
-import { FormControl } from "@angular/forms";
-import { DomSanitizer } from "@angular/platform-browser";
+import {Component, OnInit} from '@angular/core';
+import {PostService} from "../services/post-service/post.service";
+import {Post} from "../models/post";
+import {DomSanitizer} from "@angular/platform-browser";
 import {AccountService} from "../services/account/account.service";
 import {Router} from "@angular/router";
+import {Location} from '@angular/common';
+import {FormControl} from "@angular/forms";
+import {ProfileService} from "../services/profile-service/profile.service";
 
 
 @Component({
@@ -24,14 +26,14 @@ export class SocialFeedComponent implements OnInit {
     public postService: PostService,
     private _sanitizer: DomSanitizer,
     public accountService: AccountService,
-    public router: Router
+    public router: Router,
+    private profileService: ProfileService,
   ) {
+    this.accountService.checkAuthentication();
+    this.profileService.isSelected();
   }
 
   ngOnInit(): void {
-    // if (!this.accountService.isAuthenticated) {
-    //   this.router.navigate(['/login'])
-    // }
     this.fetchPosts();
   }
 
@@ -48,6 +50,7 @@ export class SocialFeedComponent implements OnInit {
       this.handleIsFetching();
     });
   }
+
 
   public handleIsFetching(): void {
     this.posts ? this.isFetching = false : this.isFetching = true;
