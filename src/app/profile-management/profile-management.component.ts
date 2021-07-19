@@ -37,7 +37,7 @@ export class ProfileManagementComponent implements OnInit {
   setCurrentProfile(selectedProfile: Profile) {
     const cookie: Cookie = this.httpService.getCookie();
     cookie.current_profile_id = selectedProfile.id;
-    cookie.current_profile_name = selectedProfile.pseudo;
+    cookie.current_profile_pseudo = selectedProfile.pseudo;
 
     this.httpService.setCookie(cookie);
 
@@ -49,7 +49,10 @@ export class ProfileManagementComponent implements OnInit {
   }
 
 
-
-
+  createProfileView() {
+    this.router.navigate(['/profile/create']).then( () => {
+      window.location.reload();
+    })
+  }
 
 }

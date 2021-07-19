@@ -1,23 +1,12 @@
-<div class="position-absolute top-50 start-50 translate-middle">
-  <div class="centered-div list-profiles-container">
-    <div class="container">
-      <div class="fs-3 text-center mb-3">Mes profiles</div>
-
-      <ul class="row">
-        <div class="col">
-          <div *ngFor="let profile of profiles;" class="">
-            <div><a class="profile-link" tabindex="0" (click)="setCurrentProfile(profile)" >
-              <span class="profile-name"> {{profile.pseudo}} </span>
-            </a>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col  text-center "><a href="/profile/create">
-        <span class="">créer un profil</span></a>
-      </div>
-      </ul>
+<div class="container">
+  <div class="row text-center">
+    <h1 class="p-5">Profiles</h1>
+  </div>
+  <div class="row">
+    <div class="col-3 text-center mx-auto p-0" *ngFor="let profile of profiles">
+      <button mat-raised-button class="m-1 container h-100 w-75" color="light" (click)="setCurrentProfile(profile)">{{profile.pseudo}}</button>
     </div>
   </div>
+  <hr>
+  <button mat-raised-button class="container" color="primary" (click)="createProfileView()">Create Profile</button>
 </div>

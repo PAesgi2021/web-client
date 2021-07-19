@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {Profile} from "../../models/profile";
+import {AccountService} from "../../services/account/account.service";
+import {ProfileService} from "../../services/profile-service/profile.service";
+import {Account} from "../../models/account";
+import {HttpService} from "../../services/utils/http.service";
+import {Cookie} from "../../models/cookie";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-profile',
@@ -7,9 +14,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewProfileComponent implements OnInit {
 
-  constructor() { }
+  profile: Profile;
+  account: Account;
+
+  constructor(
+    private accountService: AccountService,
+    private profileService: ProfileService,
+    private httpService: HttpService,
+    private router: Router,
+  ) {
+    this.accountService.checkAuthentication();
+  }
 
   ngOnInit(): void {
   }
+
+  deleteProfile() {
+    this.profileService.deleteProfile(this.httpService.getCookie().current_profile_id);
+    // this.router.navigate(['/profile']).then( () => {
+    //   window.location.reload();
+    // })
+  }
+
+  setInformations() {
+
+  }
+
+
 
 }

@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {ProfileService} from "../../../services/profile-service/profile.service";
 import {HttpService} from "../../../services/utils/http.service";
 import {CookieService} from "ngx-cookie-service";
+import {Cookie} from "../../../models/cookie";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
     ) {
     this.isLogged = this.accountService.isAuthenticated();
     if(this.httpService.getCookie()) {
-      this.profileName = this.httpService.getCookie().current_profile_name ? this.httpService.getCookie().current_profile_name : '';
+      this.profileName = this.httpService.getCookie().current_profile_pseudo ? this.httpService.getCookie().current_profile_pseudo : '';
     }
 
   }
@@ -32,9 +33,4 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-
-
-
-
 }
