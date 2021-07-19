@@ -6,6 +6,7 @@ import {CreateProfileDto} from "../dto/create-profile.dto";
 import {UpdateProfileDto} from "../dto/update-profile.dto";
 import {Router} from "@angular/router";
 import {HttpService} from "../utils/http.service";
+import {Profile} from "../../models/profile";
 
 
 
@@ -41,6 +42,11 @@ export class ProfileService {
     return this.http.get<ProfileDto[]>(this.API_URL, {responseType: 'json'});
   }
 
+  getProfileById(id: number): Observable<ProfileDto> {
+    return this.http.get<ProfileDto>(this.API_URL + '/' + this.httpSerice.getCookie().current_profile_id);
+  }
+
+
   createProfile(dto: CreateProfileDto): Observable<ProfileDto> {
     return this.http.post<ProfileDto>(this.API_URL, dto);
   }
@@ -49,4 +55,8 @@ export class ProfileService {
     return this.http.patch<ProfileDto>(`${this.API_URL}/${id}`, dto)
   }
 
+  deleteProfile(id: number): Observable<ProfileDto> {
+    console.log(this.httpSerice.getCookie().account_id)
+    return this.http.delete<ProfileDto>(this.API_URL + '/' + this.httpSerice.getCookie().account_id);
+  }
 }

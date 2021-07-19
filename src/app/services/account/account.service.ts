@@ -28,7 +28,6 @@ export class AccountService {
   }
 
   getAccountById(): Observable<AccountDTO> {
-    console.log(this.httpService.getCookie().account_id);
     return this.http.get<AccountDTO>(this.API_URL + '/' +this.httpService.getCookie().account_id);
   }
 
@@ -49,10 +48,11 @@ export class AccountService {
 
   async loadCookie(account: AccountDTO): Promise<boolean> {
     const cookieValue: ICookieProps = {
+      password: account.password,
       email: account.email,
       account_id: account.id,
       access_token: account.access_token,
-      current_profile_name: undefined,
+      current_profile_pseudo: undefined,
     };
     // Transform object to JSON then transform JSON to raw string
     const JSONcookie = JSON.stringify(cookieValue);
