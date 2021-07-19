@@ -4,8 +4,6 @@ import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { CommentComponent } from './comment/comment.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import {AppModule} from "../app.module";
-import {CookieService} from "ngx-cookie-service";
 import { CreatePostComponent } from './create-post/create-post.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -20,6 +18,7 @@ import { MatCardModule } from "@angular/material/card";
 import { CreateChallengeComponent } from './create-challenge/create-challenge.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { CreateArticleComponent } from './create-article/create-article.component';
 
 
 @NgModule({
@@ -42,6 +41,8 @@ import { ViewProfileComponent } from './view-profile/view-profile.component';
     CommentComponent,
     SpinnerComponent,
     CreatePostComponent,
+    CreateChallengeComponent,
+    CreateArticleComponent,
     CreateChallengeComponent,
     CreateProfileComponent,
     ViewProfileComponent

@@ -57,4 +57,8 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
+
+  public handleCancelClick() {
+    this.router.navigate(["/login"]);
+  }
 }

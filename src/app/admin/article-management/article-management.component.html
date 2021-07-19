@@ -1,0 +1,34 @@
+<div class="my-3">
+  <button mat-raised-button class="mx-1" (click)="handleAddPostAction()">
+    Add an article
+  </button>
+</div>
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">No.</th>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Price</th>
+    <th scope="col" class="text-center">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let article of articles">
+    <th scope="row">{{article.id}}</th>
+    <td>{{article.name}}</td>
+    <td>{{article.description}}</td>
+    <td>{{article.price}}</td>
+    <td class="text-center">
+      <div>
+        <button mat-raised-button class="bg-warning me-2">
+          update
+        </button>
+        <button mat-raised-button class="bg-danger text-white me-2" (click)="handleRemoveClick(article.id.toString())">
+          remove
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
