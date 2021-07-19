@@ -1,4 +1,5 @@
 import {Post} from "../../models/post";
+import {Role} from "../../models/role";
 
 export interface ProfileDto {
   id: number;
@@ -8,6 +9,6 @@ export interface ProfileDto {
   createdAt: Date;
   updatedAt: Date;
   account: Account;
-  roles: string[];
+  roles: Role[];
   posts: Post[];
 }

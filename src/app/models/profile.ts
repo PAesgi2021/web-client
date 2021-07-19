@@ -1,10 +1,11 @@
+import {Role} from "./role";
 
 export interface IProfileProps {
   id?: number;
   pseudo: string;
   firstName: string;
   lastName: string;
-  roles: string[];
+  roles: Role[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -15,7 +16,7 @@ export class Profile {
   private _pseudo: string;
   private _firstname: string;
   private _lastname: string;
-  private _roles: string[];
+  private _roles: Role[];
   private _createdAt: Date;
   private _updatedAt: Date;
 
@@ -77,11 +78,11 @@ export class Profile {
     this._id = value;
   }
 
-  get roles(): string[] {
+  get roles(): Role[] {
     return this._roles;
   }
 
-  set roles(value: string[]) {
+  set roles(value: Role[]) {
     this._roles = value;
   }
 }

@@ -1,0 +1,47 @@
+<div class="container w-50" xmlns="http://www.w3.org/1999/html">
+  <div class="row bg-white my-5 p-4 rounded">
+
+    <div class="text-center">
+      <h2>Create a Profile</h2>
+    </div>
+    <form [formGroup]="createProfileForm" (submit)="createProfile()">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Pseudo</mat-label>
+        <input formControlName="pseudo" matInput>
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Firstname</mat-label>
+        <input formControlName="firstname" matInput>
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Lastname</mat-label>
+        <input formControlName="lastname" matInput>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Roles</mat-label>
+        <mat-select  formControlName="roles" multiple>
+          <mat-select-trigger>
+            {{createProfileForm.get("roles").value ? createProfileForm.get("roles").value[0] : ''}}
+            <span *ngIf="createProfileForm.get('roles').value?.length > 1" class="example-additional-selection">
+        (+{{createProfileForm.get("roles").value.length - 1}} {{createProfileForm.get("roles").value?.length === 2 ? 'other' : 'others'}})
+      </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let role of roleList" [value]="role">{{role}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <hr>
+      <div>
+        <button mat-raised-button color="warn">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" class="float-end" type="submit"
+                [disabled]="createProfileForm.invalid">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

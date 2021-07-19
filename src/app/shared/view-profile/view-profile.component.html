@@ -22,6 +22,10 @@
         <th scope="row">Lastname :</th>
         <td colspan="2">{{profile.lastname}}</td>
       </tr>
+      <tr>
+        <th scope="row">Roles :</th>
+        <td colspan="2" *ngFor="let role of profile.roles">{{role.name}}</td>
+      </tr>
     </table>
   </div>
   <div class="mt-2 ">
