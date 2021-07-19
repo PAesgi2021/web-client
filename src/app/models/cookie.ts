@@ -7,9 +7,7 @@ export interface ICookieProps {
 
   current_profile_id?: number;
   current_profile_pseudo?: string;
-  current_profile_firstname?: string;
-  current_profile_lastname?: string;
-  current_profile_creationDate?: Date;
+
 
 }
 
@@ -23,9 +21,7 @@ export class Cookie {
 
   private _current_profile_id: number;
   private _current_profile_pseudo: string;
-  private _current_profile_firstname: string;
-  private _current_profile_lastname?: string;
-  private _current_profile_creationDate?: Date;
+
 
 
   constructor( props: ICookieProps) {
@@ -35,9 +31,7 @@ export class Cookie {
     this._current_profile_id = props.current_profile_id ? props.current_profile_id : undefined;
     this._access_token = props.access_token;
     this._current_profile_pseudo = props.current_profile_pseudo ? props.current_profile_pseudo : undefined;
-    this._current_profile_firstname = props.current_profile_firstname ? props.current_profile_firstname : undefined;
-    this._current_profile_lastname = props.current_profile_lastname ? props.current_profile_lastname : undefined;
-    this._current_profile_creationDate = props.current_profile_creationDate ? props.current_profile_creationDate : undefined;
+
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -93,27 +87,4 @@ export class Cookie {
     this._password = value;
   }
 
-  get current_profile_firstname(): string {
-    return this._current_profile_firstname;
-  }
-
-  set current_profile_firstname(value: string) {
-    this._current_profile_firstname = value;
-  }
-
-  get current_profile_lastname(): string {
-    return this._current_profile_lastname;
-  }
-
-  set current_profile_lastname(value: string) {
-    this._current_profile_lastname = value;
-  }
-
-  get current_profile_creationDate(): Date {
-    return this._current_profile_creationDate;
-  }
-
-  set current_profile_creationDate(value: Date) {
-    this._current_profile_creationDate = value;
-  }
 }

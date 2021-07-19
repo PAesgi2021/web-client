@@ -3,8 +3,8 @@ import {Post} from "../../models/post";
 export interface ProfileDto {
   id: number;
   pseudo: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   createdAt: Date;
   updatedAt: Date;
   account: Account;

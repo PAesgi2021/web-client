@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Profile} from "../../models/profile";
 import {AccountService} from "../../services/account/account.service";
 import {ProfileService} from "../../services/profile-service/profile.service";
 import {Account} from "../../models/account";
 import {HttpService} from "../../services/utils/http.service";
-import {Cookie} from "../../models/cookie";
 import {Router} from "@angular/router";
 
 @Component({
@@ -34,10 +33,10 @@ export class ViewProfileComponent implements OnInit {
     this.profileService.getProfileById(this.httpService.getCookie().current_profile_id).subscribe(value => {
       console.log(value);
       this.profile = new Profile({
-          ...value
-        })
+        ...value
       });
-    this.handleIsFetching();
+      this.handleIsFetching();
+    });
   }
 
   public handleIsFetching(): void {
@@ -51,9 +50,6 @@ export class ViewProfileComponent implements OnInit {
     //   window.location.reload();
     // })
   }
-
-
-
 
 
 }
