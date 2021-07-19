@@ -16,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
 import { ChallengeManagementComponent } from './challenge-management/challenge-management.component';
 import { MessageManagementComponent } from './message-management/message-management.component';
 import { MatCardModule } from "@angular/material/card";
+import { ArticleManagementComponent } from './article-management/article-management.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MatCardModule } from "@angular/material/card";
     PostManagementComponent,
     ChallengeManagementComponent,
     MessageManagementComponent,
+    ArticleManagementComponent,
   ],
     imports: [
         CommonModule,

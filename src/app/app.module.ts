@@ -14,6 +14,7 @@ import {ProfileManagementModule} from "./profile-management/profile-management.m
 import {FormsModule} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service";
 import { AdminModule } from "./admin/admin.module";
+import { ShopModule } from "./shop/shop.module";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AdminModule } from "./admin/admin.module";
     SocialFeedModule,
     FormsModule,
     AdminModule,
+    ShopModule,
     /* import above this comment */
     AppRoutingModule
   ],
