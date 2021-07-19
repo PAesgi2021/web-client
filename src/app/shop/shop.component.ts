@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from "../models/article";
+import { ArticleService } from "../services/article-service/article.service";
+import { AccountService } from "../services/account/account.service";
 
 
 @Component({
@@ -11,27 +13,41 @@ export class ShopComponent implements OnInit {
 
   articles: Article[];
   purchased: Article[];
+  isFetching: boolean;
 
   // -------------------------------------------------------------------------------------------------------------------
 
-  constructor() {
-    this.articles = [
-      new Article({name: "article_1", price: 1}),
-      new Article({name: "article_2", price: 2}),
-      new Article({name: "article_3", price: 3}),
-      new Article({name: "article_4", price: 4}),
-      new Article({name: "article_5", price: 5}),
-      new Article({name: "article_6", price: 6}),
-      new Article({name: "article_7", price: 7}),
-      new Article({name: "article_8", price: 8}),
-    ];
+  constructor(
+    public articleService: ArticleService,
+    private accountService: AccountService,
+  ) {
+    this.accountService.checkAuthentication();
     this.purchased = [];
   }
 
   ngOnInit(): void {
+    this.articles = this.fetchArticles();
   }
 
   // -------------------------------------------------------------------------------------------------------------------
+
+  public fetchArticles(): Article[] {
+    const result: Article[] = [];
+    this.articleService.getAllArticle().subscribe(response => {
+      response.map(article => {
+        result.push(new Article({
+          ...article
+        }));
+      });
+    });
+
+    this.handleIsFetching();
+    return result;
+  }
+
+  public handleIsFetching(): void {
+    this.articles ? this.isFetching = false : this.isFetching = true;
+  }
 
   public handleAddedArticle(article: Article): void {
     if (this.purchased.includes(article)) return;

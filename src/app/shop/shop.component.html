@@ -43,18 +43,18 @@
           <mat-list-item>
             {{article.name}} x {{article.number}} = {{article.number * article.price}}$
           </mat-list-item>
-          <mat-divider></mat-divider>
         </div>
+        <mat-divider></mat-divider>
         <mat-list-item class="fw-bold text-danger">
           TOTAL = {{getAmountOfPurchased()}}$
         </mat-list-item>
       </mat-list>
       <div>
-        <button mat-raised-button color="warn" class="float-start" (click)="handleResetClick()">
-          <i class="bi bi-bag-x me-2"></i>Reset
-        </button>
-        <button mat-raised-button color="primary" class="float-end" (click)="handlePurchasedClick()">
+        <button mat-raised-button color="primary" class="w-100 m-1" (click)="handlePurchasedClick()">
           <i class="bi bi-cart-check me-2"></i>Buy
+        </button>
+        <button mat-raised-button color="warn" class="w-100 m-1" (click)="handleResetClick()">
+          <i class="bi bi-bag-x me-2"></i>Reset
         </button>
       </div>
     </div>
