@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../../services/profile-service/profile.service";
 import {HttpService} from "../../services/utils/http.service";
 import {Router} from "@angular/router";
@@ -12,10 +12,10 @@ import {Router} from "@angular/router";
 export class CreateProfileManagementComponent implements OnInit {
 
   createProfileForm = new FormGroup({
-    pseudo: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    roles: new FormControl(''),
+    pseudo: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    firstname: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    lastname: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    roles: new FormControl('', [Validators.required, Validators.minLength(1)]),
   })
   roleList: string[] = ["ADMIN", "USER"];
 
