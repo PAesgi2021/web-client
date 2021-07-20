@@ -1,5 +1,6 @@
 import { Profile } from "./profile";
 import { Message } from "./message";
+import { Challenge } from "./challenge";
 
 
 export interface IPostProps {
@@ -11,6 +12,7 @@ export interface IPostProps {
   updatedAt: string;
   image?: string;
   comments?: Message[];
+  challenges?: Challenge[];
   profile?: Profile;
 }
 
@@ -24,6 +26,7 @@ export class Post {
   private _updatedAt: string;
   private _image: string;
   private _comments: Message[];
+  private _challenges: Challenge[];
   private _profile: Profile;
 
   constructor(props: IPostProps) {
@@ -34,6 +37,7 @@ export class Post {
     this._createdAt = props.createdAt;
     this._updatedAt = props.updatedAt;
     this._comments = props.comments;
+    this._challenges = props.challenges;
     this._profile = props.profile;
     this._image = props.image;
   }
@@ -113,4 +117,11 @@ export class Post {
     this._image = value;
   }
 
+  get challenges(): Challenge[] {
+    return this._challenges;
+  }
+
+  set challenges(value: Challenge[]) {
+    this._challenges = value;
+  }
 }

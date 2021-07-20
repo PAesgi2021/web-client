@@ -1,87 +1,94 @@
 <div class="container w-50 p-5">
-  <mat-stepper>
+  <form [formGroup]="createPostForm">
+    <mat-stepper>
 
-    <mat-step label="Post data">
-      <mat-form-field class="w-100" appearance="fill">
-        <mat-label>Leave a description</mat-label>
-        <textarea matInput placeholder="Ex. I love apple..."></textarea>
-      </mat-form-field>
-      <mat-slide-toggle class="mb-3">Private</mat-slide-toggle>
-      <br>
-      <button mat-raised-button color="primary">
-        Add image
-      </button>
-      <div class="mt-3">
-        <hr>
-        <button mat-raised-button color="warn" (click)="handleCancelAction()">Cancel</button>
-        <button mat-button matStepperNext class="float-end">Next</button>
-      </div>
-    </mat-step>
-
-    <mat-step label="Select tags">
-      <p>Select a corresponding tag for your new post :</p>
-      <mat-form-field class="w-100" appearance="fill">
-        <mat-label>Favorite Fruits</mat-label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
-          <mat-chip
-            *ngFor="let fruit of fruits"
-            [selectable]="selectable"
-            [removable]="removable"
-            (removed)="remove(fruit)">
-            {{fruit}}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input
-            placeholder="New fruit..."
-            #fruitInput
-            [formControl]="fruitCtrl"
-            [matAutocomplete]="auto"
-            [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-            {{fruit}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <div class="mt-3">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext class="float-end">Next</button>
-      </div>
-    </mat-step>
-
-    <mat-step label="Create Post">
-      <p>Result of the post :</p>
-      <mat-card class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Shiba Inu</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <div class="text-center">
-        <img mat-card-image class="w-50" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-step label="Post data">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Leave a description</mat-label>
+          <textarea formControlName="description" matInput placeholder="Ex.save our planet"></textarea>
+        </mat-form-field>
+        <mat-slide-toggle formControlName="isPrivate" class="mb-3">Private</mat-slide-toggle>
+        <br>
+        <input type="file" (change)="handleImageChange($event)" style="display: none" #fileInput>
+        <button type="button" (click)="fileInput.click()" class="btn btn-sm me-3">
+          <i class="bi bi-images me-1"></i>Photo or Video
+        </button>
+        <div class="mt-3">
+          <hr>
+          <button mat-raised-button color="warn" (click)="handleCancelAction()">Cancel</button>
+          <button mat-button matStepperNext class="float-end">Next</button>
         </div>
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
-      <div class="mt-3">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button color="accent" class="float-end">Valid</button>
-      </div>
-    </mat-step>
+      </mat-step>
 
-  </mat-stepper>
+      <mat-step label="Select tags">
+        <p>Select a corresponding tag for your new post :</p>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Tags</mat-label>
+          <mat-chip-list #chipList aria-label="Tag selection">
+            <mat-chip
+              *ngFor="let tag of tags"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New Tag..."
+              #tagInput
+              formControlName="tagCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+              {{tag}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="mt-3">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext class="float-end">Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step label="Create Post">
+        <p>Result of the post :</p>
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>
+              {{this.httpService.getCookie().current_profile_pseudo}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{this.createPostForm.get('description').value}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <div *ngIf="createPostForm.get('image').value as image" class="text-center">
+            <img *ngIf="image.includes('data:image')" [src]="image" alt="" style="max-height: 300px; max-width: 300px;">
+            <video *ngIf="image.includes('data:video')" [src]="image" style="max-height: 300px; max-width: 300px;"
+                   controls></video>
+            <hr>
+          </div>
+          <mat-card-content *ngIf="this.tags.length > 0">
+            {{'#' + this.tags.join(' #')}}
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button class="float-end">COMMENTS</button>
+          </mat-card-actions>
+        </mat-card>
+        <div class="mt-3">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="accent" class="float-end" (click)="handleValidClick()">Valid</button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </form>
+
 </div>
 
 

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MessageService } from "../../services/message-service/message.service";
 import { PostService } from "../../services/post-service/post.service";
+import { HttpService } from "../../services/utils/http.service";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class PostComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private postService: PostService,
+    private httpService: HttpService,
   ) {
   }
 
@@ -41,7 +43,8 @@ export class PostComponent implements OnInit {
 
     this.messageService.createMessage({
       content: this.contentComment.value,
-      post_id: this.post.id
+      post_id: this.post.id,
+      profile_id: this.httpService.getCookie().current_profile_id,
     }).subscribe(value => {
       this.post.comments.push(new Message({
         ...value

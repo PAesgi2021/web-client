@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ArticleService } from "../../services/article-service/article.service";
 
 @Component({
   selector: 'app-create-article',
@@ -15,6 +16,7 @@ export class CreateArticleComponent implements OnInit {
 
   constructor(
     private _location: Location,
+    private articleService: ArticleService,
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +34,11 @@ export class CreateArticleComponent implements OnInit {
   }
 
   public handleSubmitClick() {
-
+    this.articleService.createArticle({
+      name: this.createArticleForm.get('name').value,
+      description: this.createArticleForm.get('description').value,
+      price: this.createArticleForm.get('price').value,
+    }).subscribe();
+    this.handleCancelAction();
   }
 }

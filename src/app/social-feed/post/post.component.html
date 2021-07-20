@@ -8,10 +8,17 @@
     <img *ngIf="this.post.image.includes('data:image')" [src]="this.post.image" alt="" style="max-height: 500px; max-width: 500px;">
     <video *ngIf="this.post.image.includes('data:video')" [src]="this.post.image" style="max-height: 500px; max-width: 500px;" controls></video>
   </div>
-
   <!-- likes / comments -->
   <hr>
-  <div class="row">
+  <mat-chip-list
+    class="w-100">
+    <mat-chip
+      class="example-box"
+      *ngFor="let challenge of post.challenges">
+      {{challenge.tag}}
+    </mat-chip>
+  </mat-chip-list>
+  <div class="row pt-1">
     <div class="col">
       <button class="btn btn-sm" (click)="handleLikeAction()">
         <i class="{{hasLike ? 'bi bi-heart-fill' : 'bi bi-heart'}}"></i>
