@@ -3,9 +3,8 @@ import {AccountService} from "../../../services/account/account.service";
 import {Observable} from "rxjs";
 import {ProfileService} from "../../../services/profile-service/profile.service";
 import {HttpService} from "../../../services/utils/http.service";
-import {CookieService} from "ngx-cookie-service";
-import {Cookie} from "../../../models/cookie";
 import {Profile} from "../../../models/profile";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -21,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(
+    public router: Router,
     public accountService: AccountService,
     public profileService: ProfileService,
     private httpService: HttpService,
@@ -44,5 +44,17 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  public isAdmin(): boolean {
 
+    for (const role of this.profile.roles) {
+      if (role.name === "ADMIN") return true;
+    }
+
+    return false;
+  }
+
+
+  public handleAdminClick() {
+    this.router.navigate(["/admin"]);
+  }
 }
