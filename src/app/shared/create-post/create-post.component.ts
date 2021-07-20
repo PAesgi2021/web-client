@@ -121,7 +121,8 @@ export class CreatePostComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  public handleValidClick(): void {
+  public handleValidClick(event: Event): void {
+    event.preventDefault();
     const newPost: CreatePostDto = {
       description: this.createPostForm.get('description').value,
       isPrivate: this.createPostForm.get('isPrivate').value,

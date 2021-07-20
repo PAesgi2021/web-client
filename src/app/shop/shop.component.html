@@ -17,7 +17,7 @@
             <mat-expansion-panel class="p-0" hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  {{article.name}} ({{article.price}}$)
+                  {{article.name}} ({{article.price}} EC)
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <div>
@@ -41,12 +41,12 @@
       <mat-list class="border my-5">
         <div *ngFor="let article of purchased">
           <mat-list-item>
-            {{article.name}} x {{article.number}} = {{article.number * article.price}}$
+            {{article.name}} x {{article.number}} = {{article.number * article.price}} EC
           </mat-list-item>
         </div>
         <mat-divider></mat-divider>
         <mat-list-item class="fw-bold text-danger">
-          TOTAL = {{getAmountOfPurchased()}}$
+          TOTAL = {{getAmountOfPurchased()}} EC
         </mat-list-item>
       </mat-list>
       <div>
