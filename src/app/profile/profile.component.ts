@@ -8,10 +8,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile-management',
-  templateUrl: './profile-management.component.html',
-  styleUrls: ['./profile-management.component.scss']
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class ProfileManagementComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
   profiles = [];
 

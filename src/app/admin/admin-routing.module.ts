@@ -4,6 +4,7 @@ import { AdminComponent } from "./admin.component";
 import { CreatePostComponent } from "../shared/create-post/create-post.component";
 import { CreateChallengeComponent } from "../shared/create-challenge/create-challenge.component";
 import { CreateArticleComponent } from "../shared/create-article/create-article.component";
+import {CreateProfileManagementComponent} from "./create-profile-management/create-profile-management.component";
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: "create-article",
         component: CreateArticleComponent
+      },
+      {
+        path: "create-profile",
+        component: CreateProfileManagementComponent
       }
     ]
   }

@@ -26,7 +26,6 @@ export class CreateProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createProfile();
   }
 
   createProfile() {
@@ -39,6 +38,7 @@ export class CreateProfileComponent implements OnInit {
       firstName: this.profileForm.get('firstname').value,
       lastName: this.profileForm.get('lastname').value,
       account_id: this.httpsService.getCookie().account_id,
+      roles: ["USER"]
     }).subscribe();
     this.router.navigate(['/profile']).then( () => window.location.reload());
   }
