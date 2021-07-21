@@ -23,12 +23,14 @@ export class CreateProfileComponent implements OnInit {
     public router: Router,
     public httpsService: HttpService,
     public accountService: AccountService,
-  ) { }
+  ) {
+    this.accountService.checkAuthentication();
+  }
 
   ngOnInit(): void {
   }
 
-  createProfile() {
+  public createProfile(): void {
     if(this.profileForm.invalid) {
       return;
     }
@@ -40,6 +42,10 @@ export class CreateProfileComponent implements OnInit {
       account_id: this.httpsService.getCookie().account_id,
       roles: ["USER"]
     }).subscribe();
+    this.router.navigate(['/profile']).then( () => window.location.reload());
+  }
+
+  public cancel(): void {
     this.router.navigate(['/profile']).then( () => window.location.reload());
   }
 

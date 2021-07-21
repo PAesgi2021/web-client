@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../../services/profile-service/profile.service";
 import {HttpService} from "../../services/utils/http.service";
 import {Router} from "@angular/router";
+import {AccountService} from "../../services/account/account.service";
 
 @Component({
   selector: 'app-create-profile-management',
@@ -21,9 +22,12 @@ export class CreateProfileManagementComponent implements OnInit {
 
   constructor(
     public profileService: ProfileService,
+    public accountService: AccountService,
     public httpService: HttpService,
     public router: Router,
-  ) { }
+  ) {
+    this.accountService.checkAuthentication();
+  }
 
   ngOnInit(): void {
   }
@@ -40,6 +44,10 @@ export class CreateProfileManagementComponent implements OnInit {
       account_id: this.httpService.getCookie().account_id,
       roles: this.createProfileForm.get('roles').value
     }).subscribe();
+    this.router.navigate(['/admin']).then( () => window.location.reload());
+  }
+
+  public cancel(): void {
     this.router.navigate(['/admin']).then( () => window.location.reload());
   }
 

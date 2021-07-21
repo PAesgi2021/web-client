@@ -4,7 +4,6 @@ import {Post} from "../models/post";
 import {DomSanitizer} from "@angular/platform-browser";
 import {AccountService} from "../services/account/account.service";
 import {Router} from "@angular/router";
-import {Location} from '@angular/common';
 import {FormControl} from "@angular/forms";
 import {ProfileService} from "../services/profile-service/profile.service";
 

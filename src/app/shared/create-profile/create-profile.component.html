@@ -1,26 +1,33 @@
-<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons"-->
-<!--      rel="stylesheet">-->
 <div class="container h-25 d-flex justify-content-center align-items-center">
-  <img alt="ibb" src="https://i.ibb.co/hfr0d11/5656485091-e6794f89-e205-44a2-956a-98cabb42dc20.png" width="300"/>
+  <h1>Create a profile</h1>
 </div>
-<div class="container h-50 d-flex justify-content-center align-items-center">
-  <form class="shadow border rounded px-5 pt-4 pb-2" [formGroup]="profileForm" (submit)="createProfile()">
+<div class="container shadow border rounded" style="max-width: 500px">
+  <form class="px-5 pt-4 pb-2" [formGroup]="profileForm" (reset)="cancel()"(submit)="createProfile()">
 
     <div class="mb-2">
-      <label for="pseudo" class="form-label">Pseudo</label>
-      <input type="text" class="form-control" formControlName="pseudo" id="pseudo" >
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Pseudo</mat-label>
+        <input formControlName="pseudo" matInput>
+      </mat-form-field>
     </div>
     <div class="mb-2">
-      <label for="firstname" class="form-label">Firstname</label>
-      <input type="text" class="form-control" formControlName="firstname" id="firstname">
+      <mat-form-field class="w-100" appearance="fill">
+      <mat-label>Firstname</mat-label>
+      <input formControlName="firstname" matInput>
+    </mat-form-field>
     </div>
     <div class="mb-2">
-      <label for="lastname" class="form-label">Lastname</label>
-      <input type="text" class="form-control" formControlName="lastname" id="lastname">
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Lastname</mat-label>
+        <input formControlName="lastname" matInput>
+      </mat-form-field>
     </div>
 
-    <div class="text-center mb-4">
-      <button type="submit" class="btn btn-primary btn-sm px-4">
+    <div class="text-center" style="margin-bottom: 50px">
+      <button type="reset" class="btn btn-danger btn-sm px-4 float-start">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary btn-sm px-4 float-end">
         Create
       </button>
     </div>

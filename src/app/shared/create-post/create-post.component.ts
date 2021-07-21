@@ -33,6 +33,7 @@ export class CreatePostComponent implements OnInit {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+
   }
 
   ngOnInit(): void {
