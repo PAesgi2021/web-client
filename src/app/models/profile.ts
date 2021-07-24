@@ -1,10 +1,15 @@
+import {Role} from "./role";
+
 export interface IProfileProps {
   id?: number;
-  pseudo: string;
-  firstName: string;
-  lastName: string;
-  createdAt: Date;
-  updatedAt: Date;
+  pseudo?: string;
+  firstName?: string;
+  lastName?: string;
+  ecoPoint?: number;
+  roles?: Role[];
+  createdAt?: Date;
+  updatedAt?: Date;
+  status?: boolean;
 }
 
 export class Profile {
@@ -13,16 +18,22 @@ export class Profile {
   private _pseudo: string;
   private _firstname: string;
   private _lastname: string;
+  private _ecoPoint: number;
+  private _roles: Role[];
   private _createdAt: Date;
   private _updatedAt: Date;
+  private _status: boolean;
 
   constructor(props: IProfileProps) {
     this._id = props.id;
     this._pseudo = props.pseudo;
     this._firstname = props.firstName;
     this._lastname = props.lastName;
+    this._ecoPoint = props.ecoPoint;
+    this._roles = props.roles;
     this._createdAt = (props.createdAt);
     this._updatedAt = (props.updatedAt);
+    this._status = props.status;
   }
 
   get pseudo(): string {
@@ -71,5 +82,29 @@ export class Profile {
 
   set id(value: number) {
     this._id = value;
+  }
+
+  get roles(): Role[] {
+    return this._roles;
+  }
+
+  set roles(value: Role[]) {
+    this._roles = value;
+  }
+
+  get ecoPoint(): number {
+    return this._ecoPoint;
+  }
+
+  set ecoPoint(value: number) {
+    this._ecoPoint = value;
+  }
+
+  get status(): boolean {
+    return this._status;
+  }
+
+  set status(value: boolean) {
+    this._status = value;
   }
 }

@@ -10,11 +10,11 @@ import { LoginModule } from "./login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from "./register/register.module";
 import { HttpClientModule } from "@angular/common/http";
-import {ProfileManagementModule} from "./profile-management/profile-management.module";
 import {FormsModule} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service";
 import { AdminModule } from "./admin/admin.module";
 import { ShopModule } from "./shop/shop.module";
+import {ProfileModule} from "./profile/profile.module";
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import { ShopModule } from "./shop/shop.module";
     LoginModule,
     RegisterModule,
     SharedModule,
-    ProfileManagementModule,
+    ProfileModule,
     SocialFeedModule,
     FormsModule,
     AdminModule,

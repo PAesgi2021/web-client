@@ -23,7 +23,7 @@ export class CreateChallengeComponent implements OnInit {
 
   ngOnInit(): void {
     this.createChallengeForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      tag: new FormControl('', [Validators.required, Validators.minLength(1)]),
       description: new FormControl('', [Validators.required, Validators.minLength(1)]),
       image: new FormControl(''),
     });
@@ -50,7 +50,8 @@ export class CreateChallengeComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  public handleSubmitClick(): void {
+  public handleSubmitClick(event: Event): void {
+    event.preventDefault();
     this.challengeService.createChallenge({
       ...this.createChallengeForm.value
     }).subscribe(console.log);

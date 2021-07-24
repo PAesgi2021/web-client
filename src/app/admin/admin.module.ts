@@ -17,6 +17,9 @@ import { ChallengeManagementComponent } from './challenge-management/challenge-m
 import { MessageManagementComponent } from './message-management/message-management.component';
 import { MatCardModule } from "@angular/material/card";
 import { ArticleManagementComponent } from './article-management/article-management.component';
+import { ProfileManagementComponent } from './profile-management/profile-management.component';
+import { CreateProfileManagementComponent } from './create-profile-management/create-profile-management.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -26,6 +29,8 @@ import { ArticleManagementComponent } from './article-management/article-managem
     ChallengeManagementComponent,
     MessageManagementComponent,
     ArticleManagementComponent,
+    ProfileManagementComponent,
+    CreateProfileManagementComponent,
   ],
     imports: [
         CommonModule,
@@ -40,6 +45,7 @@ import { ArticleManagementComponent } from './article-management/article-managem
         ReactiveFormsModule,
         MatInputModule,
         MatCardModule,
+        MatSelectModule,
     ]
 })
 export class AdminModule { }

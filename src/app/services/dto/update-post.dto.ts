@@ -7,4 +7,5 @@ export interface UpdatePostDto {
   isPrivate?: boolean;
   likes?: number
   comments?: Message[];
+  status?: boolean;
 }

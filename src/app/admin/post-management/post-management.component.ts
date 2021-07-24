@@ -55,4 +55,8 @@ export class PostManagementComponent implements OnInit {
     this.posts ? this.isFetching = false : this.isFetching = true;
   }
 
+  public handleStatusClick(post: Post) {
+    post.status = !post.status;
+    this.postService.updatePost(post.id, {status: post.status}).subscribe(console.log);
+  }
 }

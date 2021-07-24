@@ -28,7 +28,7 @@
         <button mat-raised-button color="warn" (click)="handleCancelAction()">
           Cancel
         </button>
-        <button mat-raised-button color="primary" class="float-end" (click)="handleSubmitClick()"
+        <button mat-raised-button color="primary" class="float-end" (click)="handleSubmitClick($event)"
                 [disabled]="createChallengeForm.invalid">
           Submit
         </button>

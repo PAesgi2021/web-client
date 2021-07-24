@@ -12,6 +12,9 @@ import { FriendListComponent } from './friend-list/friend-list.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import { MatButtonModule } from "@angular/material/button";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatIconModule } from "@angular/material/icon";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 
 @NgModule({
@@ -24,6 +27,9 @@ import { MatButtonModule } from "@angular/material/button";
     MatInputModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MenuComponent

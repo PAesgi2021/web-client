@@ -31,11 +31,12 @@ export class ViewProfileComponent implements OnInit {
 
   public fetchProfileById(): void {
     this.profileService.getProfileById(this.httpService.getCookie().current_profile_id).subscribe(value => {
-      console.log(value);
+      // console.log(value);
       this.profile = new Profile({
         ...value
       });
       this.handleIsFetching();
+      console.log(this.profile);
     });
   }
 
