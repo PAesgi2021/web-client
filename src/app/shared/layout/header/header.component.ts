@@ -39,12 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public isAdmin(): boolean {
-
-    for (const role of this.profile.roles) {
-      if (role.name === "ADMIN") return true;
-    }
-
-    return false;
+    return !!(this.profile && this.profile.roles.find(value => value.name === "ADMIN"));
   }
 
 }

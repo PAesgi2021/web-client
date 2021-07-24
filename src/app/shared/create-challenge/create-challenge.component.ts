@@ -50,8 +50,7 @@ export class CreateChallengeComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  public handleSubmitClick(event: Event): void {
-    event.preventDefault();
+  public handleSubmitClick(): void {
     this.challengeService.createChallenge({
       ...this.createChallengeForm.value
     }).subscribe(console.log);

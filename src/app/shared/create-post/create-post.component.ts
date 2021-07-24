@@ -11,6 +11,7 @@ import { HttpService } from "../../services/utils/http.service";
 import { PostService } from "../../services/post-service/post.service";
 import { CreatePostDto } from "../../services/dto/create-post.dto";
 import { Challenge } from "../../models/challenge";
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -37,6 +38,7 @@ export class CreatePostComponent implements OnInit {
     private challengeService: ChallengeService,
     public httpService: HttpService,
     private postService: PostService,
+    private router: ActivatedRoute,
   ) {
     this.fetchChallenges();
   }
@@ -49,6 +51,9 @@ export class CreatePostComponent implements OnInit {
       profile_id: new FormControl(this.httpService.getCookie().current_profile_id),
       tagCtrl: new FormControl()
     });
+
+    if (this.router.params)
+      this.router.params.subscribe(value => {this.tags.push(value.tag)});
   }
 
   // -------------------------------------------------------------------------------------------------------------------

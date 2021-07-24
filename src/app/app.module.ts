@@ -15,6 +15,7 @@ import {CookieService} from "ngx-cookie-service";
 import { AdminModule } from "./admin/admin.module";
 import { ShopModule } from "./shop/shop.module";
 import {ProfileModule} from "./profile/profile.module";
+import { ChallengeModule } from "./challenge/challenge.module";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {ProfileModule} from "./profile/profile.module";
     FormsModule,
     AdminModule,
     ShopModule,
+    ChallengeModule,
     /* import above this comment */
     AppRoutingModule
   ],

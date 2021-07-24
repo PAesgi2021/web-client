@@ -1,4 +1,4 @@
-<div class="container w-25" xmlns="http://www.w3.org/1999/html">
+<div class="container w-50">
   <div class="row bg-white my-5 p-4 rounded">
 
     <div class="text-center">
@@ -28,7 +28,7 @@
         <button mat-raised-button color="warn" (click)="handleCancelAction()">
           Cancel
         </button>
-        <button mat-raised-button color="primary" class="float-end" (click)="handleSubmitClick($event)"
+        <button mat-raised-button color="primary" class="float-end" (click)="handleSubmitClick()"
                 [disabled]="createChallengeForm.invalid">
           Submit
         </button>
