@@ -31,4 +31,8 @@ export class MessageService {
     return this.http.patch<MessageDto>(`${this.API_URL}/${id}`, dto);
   }
 
+  deleteMessage(id: number) {
+    return this.http.delete(`${this.API_URL}/${id}`);
+  }
+
 }

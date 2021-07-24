@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {PostService} from "../services/post-service/post.service";
-import {Post} from "../models/post";
-import {DomSanitizer} from "@angular/platform-browser";
-import {AccountService} from "../services/account/account.service";
-import {Router} from "@angular/router";
-import {Location} from '@angular/common';
-import {FormControl} from "@angular/forms";
-import {ProfileService} from "../services/profile-service/profile.service";
+import { Component, OnInit } from '@angular/core';
+import { PostService } from "../services/post-service/post.service";
+import { Post } from "../models/post";
+import { DomSanitizer } from "@angular/platform-browser";
+import { AccountService } from "../services/account/account.service";
+import { Router } from "@angular/router";
+import { Location } from '@angular/common';
+import { FormControl } from "@angular/forms";
+import { ProfileService } from "../services/profile-service/profile.service";
 
 
 @Component({
@@ -18,7 +18,6 @@ export class SocialFeedComponent implements OnInit {
 
   posts: Post[];
   isFetching = true;
-  searchPost = new FormControl('');
 
   // -------------------------------------------------------------------------------------------------------------------
 
@@ -29,11 +28,11 @@ export class SocialFeedComponent implements OnInit {
     public router: Router,
     private profileService: ProfileService,
   ) {
-    this.accountService.checkAuthentication();
-    this.profileService.isSelected();
   }
 
   ngOnInit(): void {
+    this.accountService.checkAuthentication();
+    this.profileService.isSelected();
     this.fetchPosts();
   }
 
@@ -43,9 +42,11 @@ export class SocialFeedComponent implements OnInit {
     this.postService.getAllPost().subscribe(response => {
       this.posts = [];
       response.map(post => {
-        this.posts.push(new Post({
-          ...post
-        }));
+        if (post.status) {
+          this.posts.push(new Post({
+            ...post
+          }));
+        }
       });
       this.handleIsFetching();
     });

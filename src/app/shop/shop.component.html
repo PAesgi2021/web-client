@@ -1,63 +1,73 @@
-<div class="container h-100">
-  <div class="row h-100">
+<ng-container *ngIf="isFetching; else page">
+  <app-spinner></app-spinner>
+</ng-container>
 
-    <!-- Left -->
-    <div class="col-2 ps-0 pt-3">
-      <app-menu></app-menu>
-    </div>
+<ng-template #page>
 
-    <!-- Middle -->
-    <div class="col border-start border-end">
-      <div class="text-center p-3">
-        <h1 class="text-uppercase">Shop</h1>
+  <div class="container h-100">
+    <div class="row h-100">
+
+      <!-- Left -->
+      <div class="col-2 ps-0 pt-3">
+        <app-menu></app-menu>
       </div>
-      <div class="container">
-        <div class="row">
-          <div *ngFor="let article of articles" class="col-3 p-2 text-center">
-            <mat-expansion-panel class="p-0" hideToggle>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{article.name}} ({{article.price}} EC)
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <div>
-                <button mat-button color="primary" (click)="handleMinusClick(article)" [disabled]="article.number < 1">
-                  -
-                </button>
-                {{article.number}}
-                <button mat-button color="primary" (click)="handlePlusClick(article)">+</button>
-              </div>
-            </mat-expansion-panel>
+
+      <!-- Middle -->
+      <div class="col border-start border-end">
+        <div class="text-center p-3">
+          <h3>You have <span class="text-uppercase fw-bold">{{profile.ecoPoint}} EcoPoint</span> available</h3>
+          <p *ngIf="hasError" class="text-danger p-2 border fw-bold">You don't have enough EcoPoint !</p>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div *ngFor="let article of articles" class="col-3 p-2 text-center">
+              <mat-expansion-panel class="p-0" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{article.name}} ({{article.price}} EP)
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                  <button mat-button color="primary" (click)="handleMinusClick(article)"
+                          [disabled]="article.number < 1">
+                    -
+                  </button>
+                  {{article.number}}
+                  <button mat-button color="primary" (click)="handlePlusClick(article)">+</button>
+                </div>
+              </mat-expansion-panel>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Right -->
-    <div class="col-2">
-      <div class="text-center pt-3">
-        Purchased
-      </div>
-      <mat-list class="border my-5">
-        <div *ngFor="let article of purchased">
-          <mat-list-item>
-            {{article.name}} x {{article.number}} = {{article.number * article.price}} EC
-          </mat-list-item>
+      <!-- Right -->
+      <div class="col-2">
+        <div class="text-center pt-3">
+          Purchased
         </div>
-        <mat-divider></mat-divider>
-        <mat-list-item class="fw-bold text-danger">
-          TOTAL = {{getAmountOfPurchased()}} EC
-        </mat-list-item>
-      </mat-list>
-      <div>
-        <button mat-raised-button color="primary" class="w-100 m-1" (click)="handlePurchasedClick()">
-          <i class="bi bi-cart-check me-2"></i>Buy
-        </button>
-        <button mat-raised-button color="warn" class="w-100 m-1" (click)="handleResetClick()">
-          <i class="bi bi-bag-x me-2"></i>Reset
-        </button>
+        <mat-list class="border my-5">
+          <div *ngFor="let article of purchased">
+            <mat-list-item>
+              {{article.name}} x {{article.number}} = {{article.number * article.price}} EP
+            </mat-list-item>
+          </div>
+          <mat-divider></mat-divider>
+          <mat-list-item class="fw-bold text-danger">
+            TOTAL = {{getAmountOfPurchased()}} EP
+          </mat-list-item>
+        </mat-list>
+        <div>
+          <button mat-raised-button color="primary" class="w-100 m-1" (click)="handleCheckoutClick()" [disabled]="purchased.length < 1">
+            <i class="bi bi-cart-check me-2"></i>Buy
+          </button>
+          <button mat-raised-button color="warn" class="w-100 m-1" (click)="handleResetClick()">
+            <i class="bi bi-bag-x me-2"></i>Reset
+          </button>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</div>
+
+</ng-template>

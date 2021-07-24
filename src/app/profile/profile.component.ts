@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ProfileService} from "../services/profile-service/profile.service";
-import {Profile} from "../models/profile";
-import {AccountService} from "../services/account/account.service";
-import {HttpService} from "../services/utils/http.service";
-import {Cookie} from "../models/cookie";
-import {Router} from "@angular/router";
+import { ProfileService } from "../services/profile-service/profile.service";
+import { Profile } from "../models/profile";
+import { AccountService } from "../services/account/account.service";
+import { HttpService } from "../services/utils/http.service";
+import { Cookie } from "../models/cookie";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-profile-management',
@@ -13,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
 
-  profiles = [];
+  profiles: Profile[] = [];
 
   constructor(
     private profileService: ProfileService,
@@ -29,8 +30,12 @@ export class ProfileComponent implements OnInit {
   }
 
   fetchProfiles() {
-    this.accountService.getAccountById().subscribe( response => {
-      this.profiles = response.profiles;
+    this.accountService.getAccountById().subscribe(account => {
+      account.profiles.map(profile => {
+        if (profile.status) {
+          this.profiles.push(new Profile(profile));
+        }
+      })
     })
   }
 
@@ -41,8 +46,8 @@ export class ProfileComponent implements OnInit {
 
     this.httpService.setCookie(cookie);
 
-    if(this.httpService.getCookie().current_profile_id) {
-      this.router.navigate(['/social-feed']).then( () => {
+    if (this.httpService.getCookie().current_profile_id) {
+      this.router.navigate(['/social-feed']).then(() => {
         window.location.reload();
       })
     }
@@ -50,7 +55,7 @@ export class ProfileComponent implements OnInit {
 
 
   createProfileView() {
-    this.router.navigate(['/profile/create']).then( () => {
+    this.router.navigate(['/profile/create']).then(() => {
       window.location.reload();
     })
   }

@@ -14,6 +14,7 @@ export interface IPostProps {
   comments?: Message[];
   challenges?: Challenge[];
   profile?: Profile;
+  status?: boolean;
 }
 
 export class Post {
@@ -28,6 +29,7 @@ export class Post {
   private _comments: Message[];
   private _challenges: Challenge[];
   private _profile: Profile;
+  private _status: boolean;
 
   constructor(props: IPostProps) {
     this._id = props.id;
@@ -40,6 +42,7 @@ export class Post {
     this._challenges = props.challenges;
     this._profile = props.profile;
     this._image = props.image;
+    this._status = props.status;
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -123,5 +126,13 @@ export class Post {
 
   set challenges(value: Challenge[]) {
     this._challenges = value;
+  }
+
+  get status(): boolean {
+    return this._status;
+  }
+
+  set status(value: boolean) {
+    this._status = value;
   }
 }

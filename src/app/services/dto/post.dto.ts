@@ -13,4 +13,5 @@ export interface PostDto {
   comments: Message[];
   challenges: Challenge[];
   profile: Profile;
+  status: boolean;
 }

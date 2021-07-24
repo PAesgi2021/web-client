@@ -13,9 +13,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  hide = true;
   isLogged: Observable<boolean>;
-  profileName: string;
   profile: Profile;
 
 
@@ -25,14 +23,10 @@ export class HeaderComponent implements OnInit {
     public profileService: ProfileService,
     private httpService: HttpService,
     ) {
-    this.isLogged = this.accountService.isAuthenticated();
-    // if(this.httpService.getCookie()) {
-    //   this.profileName = this.httpService.getCookie().current_profile_pseudo ? this.httpService.getCookie().current_profile_pseudo : '';
-    // }
-
   }
 
   ngOnInit(): void {
+    this.isLogged = this.accountService.isAuthenticated();
     this.selectedProfile();
   }
 
@@ -53,8 +47,4 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
-
-  public handleAdminClick() {
-    this.router.navigate(["/admin"]);
-  }
 }

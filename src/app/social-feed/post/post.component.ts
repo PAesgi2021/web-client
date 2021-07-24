@@ -60,8 +60,16 @@ export class PostComponent implements OnInit {
 
   handleLikeAction() {
     this.hasLike = !this.hasLike;
-    this.hasLike ? this.post.likes++ : this.post.likes--;
-    this.postService.updatePost(this.post.id, {likes: this.post.likes}).subscribe();
+    let action = '';
+    if (this.hasLike) {
+      this.post.likes++;
+      action = 'like'
+    } else {
+      this.post.likes--;
+      action = 'unlike'
+    }
+
+    this.postService.updateLike(this.post.id, action).subscribe(console.log);
   }
 
 }
