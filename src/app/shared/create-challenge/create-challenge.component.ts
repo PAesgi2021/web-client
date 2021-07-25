@@ -23,7 +23,7 @@ export class CreateChallengeComponent implements OnInit {
 
   ngOnInit(): void {
     this.createChallengeForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      tag: new FormControl('', [Validators.required, Validators.minLength(1)]),
       description: new FormControl('', [Validators.required, Validators.minLength(1)]),
       image: new FormControl(''),
     });

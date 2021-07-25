@@ -3,4 +3,5 @@ export interface CreatePostDto {
   isPrivate: boolean;
   image: string;
   profile_id: number;
+  challenges_id?: number[];
 }

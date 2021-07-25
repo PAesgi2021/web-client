@@ -54,11 +54,9 @@ export class MessageManagementComponent implements OnInit {
     this.messages ? this.isFetching = false : this.isFetching = true;
   }
 
-  public handleRemoveClick(id: string) {
-    // this.messageService.deleteChallenge(id).subscribe(console.log);
-    // this.messages.forEach((value, index) => {
-    //   if (value.id.toString() === id) this.messages.splice(index, 1)
-    // })
+  public handleRemoveClick(id: number) {
+    this.messages.splice(this.messages.findIndex(value => value.id === id), 1);
+    this.messageService.deleteMessage(id).subscribe(console.log);
   }
 
 }

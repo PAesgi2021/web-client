@@ -1,24 +1,12 @@
 <nav class="nav flex-column sticky-top">
-  <a class="nav-link" aria-current="page" href="#">
+  <a class="nav-link" aria-current="page" [routerLink]="['/social-feed']">
     <i class="bi bi-rss-fill me-2"></i>Feed
   </a>
-  <a class="nav-link" href="/shop">
+  <a class="nav-link" [routerLink]="['/shop']">
     <i class="bi bi-cart-fill me-2"></i>Shop
   </a>
-  <a class="nav-link" href="#">
+  <a class="nav-link" [routerLink]="['/challenge']">
     <i class="bi bi-play-circle-fill me-2"></i>Challenge
-  </a>
-  <a class="nav-link" href="#">
-    <i class="bi bi-people-fill me-2"></i>Groups
-  </a>
-  <a class="nav-link" href="#">
-    <i class="bi bi-bookmark-fill me-2"></i>Bookmarks
-  </a>
-  <a class="nav-link" href="#">
-    <i class="bi bi-question-circle-fill me-2"></i>Questions
-  </a>
-  <a class="nav-link" href="#">
-    <i class="bi bi-calendar-event me-2"></i>Events
   </a>
   <hr>
 </nav>

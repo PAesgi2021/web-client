@@ -54,4 +54,8 @@ export class ProfileManagementComponent implements OnInit {
     return result;
   }
 
+  public handleStatusClick(profile: Profile): void {
+    profile.status = !profile.status;
+    this.profileService.updateProfile(profile.id, {status: profile.status}).subscribe(console.log);
+  }
 }

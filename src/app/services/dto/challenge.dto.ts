@@ -5,5 +5,6 @@ export interface ChallengeDto {
   id: number;
   tag: string;
   description: string;
+  image: string;
   posts: Post[];
 }

@@ -19,22 +19,24 @@ import { CreateChallengeComponent } from './create-challenge/create-challenge.co
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { RouterModule } from "@angular/router";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatIconModule,
-    MatChipsModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatSlideToggleModule,
-    MatCardModule,
-  ],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatIconModule,
+        MatChipsModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatSlideToggleModule,
+        MatCardModule,
+        RouterModule,
+    ],
   declarations: [
     HeaderComponent,
     FooterComponent,

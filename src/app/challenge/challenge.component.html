@@ -1,0 +1,36 @@
+<ng-container *ngIf="isFetching; else page">
+  <app-spinner></app-spinner>
+</ng-container>
+
+<ng-template #page>
+
+  <div class="container h-100">
+    <div class="row pt-3">
+      <div class="col-2">
+        <app-menu></app-menu>
+      </div>
+      <div class="col">
+        <mat-card *ngFor="let challenge of challenges" class="my-3">
+          <span class="text-white p-2 rounded-pill bg-dark" style="font-size: 12px">{{challenge.tag}}</span>
+          <hr>
+          {{challenge.description}}
+          <div class="text-center pt-3" *ngIf="challenge.image != ''">
+            <img *ngIf="challenge.image.includes('data:image')" [src]="challenge.image" alt=""
+                 style="max-height: 500px; max-width: 500px;">
+            <video *ngIf="challenge.image.includes('data:video')" [src]="challenge.image"
+                   style="max-height: 500px; max-width: 500px;" controls></video>
+          </div>
+          <div class="text-end mt-3">
+            <button [routerLink]="['create-post', challenge.tag]" class="btn btn-primary btn-sm">
+              participate
+            </button>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-2">
+        <!--        <app-friend-list></app-friend-list>-->
+      </div>
+    </div>
+  </div>
+
+</ng-template>

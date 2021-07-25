@@ -31,4 +31,12 @@ export class PostService {
     return this.http.patch<PostDto>(`${this.API_URL}/${id}`, dto);
   }
 
+  updateLike(id: number, action: string) {
+    return this.http.patch(`${this.API_URL}/${id}/${action}`,null)
+  }
+
+  deletePost(id: number) {
+    return this.http.delete(`${this.API_URL}/${id}`);
+  }
+
 }

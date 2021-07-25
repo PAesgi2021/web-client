@@ -21,11 +21,8 @@
     <td>{{profileRoles(profile)}}</td>
     <td class="text-center">
       <div>
-        <button mat-raised-button class="bg-warning me-2">
-          update
-        </button>
-        <button mat-raised-button class="bg-danger text-white me-2" >
-          remove
+        <button mat-raised-button class="{{profile.status ? 'bg-success' : 'bg-danger'}} text-white me-2" (click)="handleStatusClick(profile)">
+          {{profile.status}}
         </button>
       </div>
     </td>
