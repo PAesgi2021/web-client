@@ -4,7 +4,7 @@
     <div class="text-center">
       <h2>Create a Profile</h2>
     </div>
-    <form [formGroup]="createProfileForm" (submit)="createProfile()">
+    <form [formGroup]="createProfileForm" (reset)="cancel()" (submit)="createProfile()">
       <mat-form-field class="w-100" appearance="fill">
         <mat-label>Pseudo</mat-label>
         <input formControlName="pseudo" matInput>
@@ -33,7 +33,7 @@
 
       <hr>
       <div>
-        <button mat-raised-button color="warn">
+        <button mat-raised-button color="warn" type="reset">
           Cancel
         </button>
         <button mat-raised-button color="primary" class="float-end" type="submit"

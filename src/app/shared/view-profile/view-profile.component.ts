@@ -23,6 +23,8 @@ export class ViewProfileComponent implements OnInit {
     private httpService: HttpService,
     private router: Router,
   ) {
+    this.accountService.checkAuthentication();
+
   }
 
   ngOnInit(): void {
@@ -46,10 +48,20 @@ export class ViewProfileComponent implements OnInit {
 
 
   public deleteProfile(): void {
-    this.profileService.deleteProfile(this.httpService.getCookie().current_profile_id);
-    // this.router.navigate(['/profile']).then( () => {
-    //   window.location.reload();
-    // })
+    this.profile.status = !this.profile.status;
+    this.profileService.updateProfile(this.profile.id, {status: this.profile.status}).subscribe(console.log);
+    this.router.navigate(['/profile']).then( () => {
+      window.location.reload();
+    })
+  }
+
+  public profileRoles(profile: Profile): string {
+    let result = "";
+    profile.roles.forEach(value => {
+      result += `[${value.name}] `;
+    })
+
+    return result;
   }
 
 

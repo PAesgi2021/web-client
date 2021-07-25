@@ -1,35 +1,27 @@
-<ng-container *ngIf="isFetching; else page">
-  <app-spinner></app-spinner>
-</ng-container>
-
-<ng-template #page>
-
-  <div class="container h3 mt-5 text-center">
-    profile Card
-  </div>
-  <div class="ms-5 w-50">
-    <table class="table table-borderless">
-      <tbody class="">
-      <tr class="">
-        <th scope="row" class="">Nickname :</th>
-        <td class="">{{profile.pseudo}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Firstname :</th>
-        <td>{{profile.firstname}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Lastname :</th>
-        <td colspan="2">{{profile.lastname}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Roles :</th>
-        <td colspan="2" *ngFor="let role of profile.roles">{{role.name}}</td>
-      </tr>
-    </table>
-  </div>
-  <div class="mt-2 ">
-<!--    <button class="ms-5 me-3">Modifier</button>-->
-    <button mat-raised-button color="primary" class="ms-5" (click)="deleteProfile()">supprimer</button>
-  </div>
-</ng-template>
+<mat-card class="container shadow mt-5 rounded" style="max-width: 500px;  background-color: ghostwhite">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image" style="background-size: cover; width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%">
+        <h2 class="mt-2" style="margin-left: 9px">
+          {{profile.firstname.charAt(0).toUpperCase()}}.{{profile.lastname.charAt(0).toUpperCase()}}
+        </h2>
+    </div>
+    <div class="text-center" style="width: 290px">
+    <mat-card-title>{{profile.pseudo}}</mat-card-title>
+    <mat-card-subtitle>{{profile.firstname}} {{profile.lastname}}</mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+      <div class="shadow rounded-circle" style="height: 200px; background-color: white">
+        <p class="fw-bold" style="padding-top: 40px; margin-left: 70px">Nickname : {{profile.pseudo}}</p>
+        <p class="fw-bold" style="margin-left: 70px">Firstname : {{profile.firstname}}</p>
+        <p class="fw-bold" style="margin-left: 70px">Lastname : {{profile.lastname}}</p>
+        <p class="fw-bold" style="margin-left: 70px">roles : {{profileRoles(profile)}}</p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="warn" (click)="deleteProfile()" class="ms-2">DELETE</button>
+  </mat-card-actions>
+</mat-card>

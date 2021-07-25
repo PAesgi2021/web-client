@@ -56,7 +56,6 @@ export class ProfileService {
   }
 
   deleteProfile(id: number): Observable<ProfileDto> {
-    console.log(this.httpSerice.getCookie().account_id)
-    return this.http.delete<ProfileDto>(this.API_URL + '/' + this.httpSerice.getCookie().account_id);
+    return this.http.delete<ProfileDto>(this.API_URL + '/' + id);
   }
 }
