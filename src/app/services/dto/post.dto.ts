@@ -1,6 +1,6 @@
-import { Message } from "../../models/message";
-import { Profile } from "../../models/profile";
-import { Challenge } from "../../models/challenge";
+import {Message} from "../../models/message";
+import {Profile} from "../../models/profile";
+import {Challenge} from "../../models/challenge";
 
 
 export interface PostDto {

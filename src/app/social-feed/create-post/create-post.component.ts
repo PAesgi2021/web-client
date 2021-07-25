@@ -1,18 +1,18 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { PostService } from "../../services/post-service/post.service";
-import { Post } from "../../models/post";
-import { CreatePostDto } from "../../services/dto/create-post.dto";
-import { HttpService } from "../../services/utils/http.service";
-import { AccountService } from "../../services/account/account.service";
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { Observable } from "rxjs";
-import { MatChipInputEvent } from "@angular/material/chips";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { map, startWith } from "rxjs/operators";
-import { Challenge } from "../../models/challenge";
-import { ChallengeService } from "../../services/challenge-service/challenge.service";
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {PostService} from "../../services/post-service/post.service";
+import {Post} from "../../models/post";
+import {CreatePostDto} from "../../services/dto/create-post.dto";
+import {HttpService} from "../../services/utils/http.service";
+import {AccountService} from "../../services/account/account.service";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {Observable} from "rxjs";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {map, startWith} from "rxjs/operators";
+import {Challenge} from "../../models/challenge";
+import {ChallengeService} from "../../services/challenge-service/challenge.service";
 
 
 @Component({
@@ -141,7 +141,6 @@ export class CreatePostComponent implements OnInit {
 
     reader.onload = () => {
       this.createPostForm.get('image').setValue(reader.result as string);
-      console.log(file);
     }
 
     reader.readAsDataURL(file);
@@ -153,8 +152,6 @@ export class CreatePostComponent implements OnInit {
     this.challenges.forEach(value => {
       if (this.tags.includes(value.tag)) result.push(value.id);
     });
-
-    console.log(result);
     return result;
   }
 }

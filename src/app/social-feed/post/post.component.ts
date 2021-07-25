@@ -32,15 +32,12 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.post);
     this.postDate = new Date(this.post.createdAt);
   }
 
   // -------------------------------------------------------------------------------------------------------------------
 
   onSubmitComment() {
-    console.log(this.contentComment.value)
-
     this.messageService.createMessage({
       content: this.contentComment.value,
       post_id: this.post.id,

@@ -19,6 +19,7 @@ export class AppComponent {
     private cookieService: CookieService
   ) {
   }
+
   ngOnInit() {
   }
 

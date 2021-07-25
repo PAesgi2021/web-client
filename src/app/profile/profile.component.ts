@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfileService } from "../services/profile-service/profile.service";
-import { Profile } from "../models/profile";
-import { AccountService } from "../services/account/account.service";
-import { HttpService } from "../services/utils/http.service";
-import { Cookie } from "../models/cookie";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ProfileService} from "../services/profile-service/profile.service";
+import {Profile} from "../models/profile";
+import {AccountService} from "../services/account/account.service";
+import {HttpService} from "../services/utils/http.service";
+import {Cookie} from "../models/cookie";
+import {Router} from "@angular/router";
 
 
 @Component({

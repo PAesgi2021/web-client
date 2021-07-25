@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { CreateMessageDto } from "../dto/create-message.dto";
-import { Observable } from "rxjs";
-import { MessageDto } from "../dto/message.dto";
-import { UpdateMessageDto } from "../dto/update-message.dto";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {CreateMessageDto} from "../dto/create-message.dto";
+import {Observable} from "rxjs";
+import {MessageDto} from "../dto/message.dto";
+import {UpdateMessageDto} from "../dto/update-message.dto";
 
 
 @Injectable({

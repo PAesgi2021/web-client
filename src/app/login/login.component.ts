@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../services/account/account.service";
-import {Route, Router} from "@angular/router";
-import {error} from "@angular/compiler/src/util";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -56,12 +55,12 @@ export class LoginComponent implements OnInit {
     }).subscribe(async account => {
       if (account.status == 201 && await this.accountService.loadCookie(account.body)) {
         this.isWait = false;
-        this.accountService.isAuthenticated().subscribe( res => {
+        this.accountService.isAuthenticated().subscribe(res => {
           if (res) {
             this.isLoggedIn = true;
             setTimeout(() => {
                 this.router.navigate(['/profile']).then(() => {
-                window.location.reload();
+                  window.location.reload();
                 });
               },
               1500);

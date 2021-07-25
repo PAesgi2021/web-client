@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { CreateChallengeDto } from "../dto/create-challenge.dto";
-import { ChallengeDto } from "../dto/challenge.dto";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {CreateChallengeDto} from "../dto/create-challenge.dto";
+import {ChallengeDto} from "../dto/challenge.dto";
 
 @Injectable({
   providedIn: 'root'

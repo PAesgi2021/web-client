@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { PostDto } from "../dto/post.dto";
-import { UpdatePostDto } from "../dto/update-post.dto";
-import { Observable } from "rxjs";
-import { CreatePostDto } from "../dto/create-post.dto";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {PostDto} from "../dto/post.dto";
+import {UpdatePostDto} from "../dto/update-post.dto";
+import {Observable} from "rxjs";
+import {CreatePostDto} from "../dto/create-post.dto";
 
 
 @Injectable({
@@ -24,7 +24,7 @@ export class PostService {
   }
 
   createPost(dto: CreatePostDto): Observable<PostDto> {
-    return this.http.post<PostDto>(this.API_URL, {...dto, });
+    return this.http.post<PostDto>(this.API_URL, {...dto,});
   }
 
   updatePost(id: number, dto: UpdatePostDto): Observable<PostDto> {
@@ -32,7 +32,7 @@ export class PostService {
   }
 
   updateLike(id: number, action: string) {
-    return this.http.patch(`${this.API_URL}/${id}/${action}`,null)
+    return this.http.patch(`${this.API_URL}/${id}/${action}`, null)
   }
 
   deletePost(id: number) {

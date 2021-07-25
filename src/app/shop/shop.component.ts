@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Article } from "../models/article";
-import { ArticleService } from "../services/article-service/article.service";
-import { AccountService } from "../services/account/account.service";
-import { ProfileService } from "../services/profile-service/profile.service";
-import { Profile } from "../models/profile";
-import { HttpService } from "../services/utils/http.service";
-import { forkJoin } from "rxjs";
+import {Component, OnInit} from '@angular/core';
+import {Article} from "../models/article";
+import {ArticleService} from "../services/article-service/article.service";
+import {AccountService} from "../services/account/account.service";
+import {ProfileService} from "../services/profile-service/profile.service";
+import {Profile} from "../models/profile";
+import {HttpService} from "../services/utils/http.service";
+import {forkJoin} from "rxjs";
 
 
 @Component({

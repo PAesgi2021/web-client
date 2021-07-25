@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { MessageService } from "../../services/message-service/message.service";
-import { Message } from "../../models/message";
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
+import {MessageService} from "../../services/message-service/message.service";
+import {Message} from "../../models/message";
 
 @Component({
   selector: 'app-message-management',

@@ -1,6 +1,6 @@
-import { Profile } from "./profile";
-import { Message } from "./message";
-import { Challenge } from "./challenge";
+import {Profile} from "./profile";
+import {Message} from "./message";
+import {Challenge} from "./challenge";
 
 
 export interface IPostProps {

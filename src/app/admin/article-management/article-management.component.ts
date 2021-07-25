@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { Article } from "../../models/article";
-import { ArticleService } from "../../services/article-service/article.service";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {Article} from "../../models/article";
+import {ArticleService} from "../../services/article-service/article.service";
 
 
 @Component({

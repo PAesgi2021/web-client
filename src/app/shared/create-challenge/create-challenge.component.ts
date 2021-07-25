@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ChallengeService } from "../../services/challenge-service/challenge.service";
+import {Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ChallengeService} from "../../services/challenge-service/challenge.service";
 
 
 @Component({
@@ -44,7 +44,6 @@ export class CreateChallengeComponent implements OnInit {
 
     reader.onload = () => {
       this.createChallengeForm.get('image').setValue(reader.result as string);
-      console.log(file);
     }
 
     reader.readAsDataURL(file);

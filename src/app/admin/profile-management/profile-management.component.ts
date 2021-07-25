@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Profile} from "../../models/profile";
 import {ProfileService} from "../../services/profile-service/profile.service";
 import {Router} from "@angular/router";
@@ -27,7 +27,7 @@ export class ProfileManagementComponent implements OnInit {
   public fetchProfiles(): Profile[] {
     const result: Profile[] = [];
     this.profileService.getAllProfile().subscribe(value => {
-      value.map( profile => {
+      value.map(profile => {
         result.push(new Profile({
           ...profile
         }));

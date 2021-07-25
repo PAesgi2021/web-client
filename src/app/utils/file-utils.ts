@@ -1,4 +1,4 @@
-import { Post } from "../models/post";
+import {Post} from "../models/post";
 import {HttpResponse} from "@angular/common/http";
 
 

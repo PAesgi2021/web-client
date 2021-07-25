@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from "@angular/common";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ArticleService } from "../../services/article-service/article.service";
+import {Component, OnInit} from '@angular/core';
+import {Location} from "@angular/common";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ArticleService} from "../../services/article-service/article.service";
 
 @Component({
   selector: 'app-create-article',
@@ -17,7 +17,8 @@ export class CreateArticleComponent implements OnInit {
   constructor(
     private _location: Location,
     private articleService: ArticleService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.createArticleForm = new FormGroup({

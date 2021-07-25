@@ -33,12 +33,10 @@ export class ViewProfileComponent implements OnInit {
 
   public fetchProfileById(): void {
     this.profileService.getProfileById(this.httpService.getCookie().current_profile_id).subscribe(value => {
-      // console.log(value);
       this.profile = new Profile({
         ...value
       });
       this.handleIsFetching();
-      console.log(this.profile);
     });
   }
 
@@ -50,7 +48,7 @@ export class ViewProfileComponent implements OnInit {
   public deleteProfile(): void {
     this.profile.status = !this.profile.status;
     this.profileService.updateProfile(this.profile.id, {status: this.profile.status}).subscribe(console.log);
-    this.router.navigate(['/profile']).then( () => {
+    this.router.navigate(['/profile']).then(() => {
       window.location.reload();
     })
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../../services/profile-service/profile.service";
 import {HttpService} from "../../services/utils/http.service";
@@ -33,7 +33,7 @@ export class CreateProfileManagementComponent implements OnInit {
   }
 
   public createProfile(): void {
-    if(this.createProfileForm.invalid) {
+    if (this.createProfileForm.invalid) {
       return;
     }
 
@@ -44,11 +44,11 @@ export class CreateProfileManagementComponent implements OnInit {
       account_id: this.httpService.getCookie().account_id,
       roles: this.createProfileForm.get('roles').value
     }).subscribe();
-    this.router.navigate(['/admin']).then( () => window.location.reload());
+    this.router.navigate(['/admin']).then(() => window.location.reload());
   }
 
   public cancel(): void {
-    this.router.navigate(['/admin']).then( () => window.location.reload());
+    this.router.navigate(['/admin']).then(() => window.location.reload());
   }
 
   handleSelectChanges() {

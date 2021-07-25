@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProfileDto} from "../dto/profile.dto";
@@ -6,8 +6,6 @@ import {CreateProfileDto} from "../dto/create-profile.dto";
 import {UpdateProfileDto} from "../dto/update-profile.dto";
 import {Router} from "@angular/router";
 import {HttpService} from "../utils/http.service";
-import {Profile} from "../../models/profile";
-
 
 
 @Injectable({
@@ -26,9 +24,9 @@ export class ProfileService {
   // -------------------------------------------------------------------------------------------------------------------
 
   isSelected() {
-    if(!this.httpSerice.getCookie().current_profile_id) {
-      this.router.navigate(['/profile']).then( () => {
-        window.location.reload();
+    if (!this.httpSerice.getCookie().current_profile_id) {
+      this.router.navigate(['/profile']).then(() => {
+          window.location.reload();
         }
       )
     }

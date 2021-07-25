@@ -23,8 +23,7 @@ export class Cookie {
   private _current_profile_pseudo: string;
 
 
-
-  constructor( props: ICookieProps) {
+  constructor(props: ICookieProps) {
     this._account_id = props.account_id;
     this._email = props.email;
     this._password = props.password;

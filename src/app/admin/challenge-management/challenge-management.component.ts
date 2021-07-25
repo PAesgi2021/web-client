@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { ChallengeService } from "../../services/challenge-service/challenge.service";
-import { Challenge } from "../../models/challenge";
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
+import {ChallengeService} from "../../services/challenge-service/challenge.service";
+import {Challenge} from "../../models/challenge";
 
 
 @Component({

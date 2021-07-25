@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../../services/profile-service/profile.service";
 import {Router} from "@angular/router";
@@ -31,22 +31,22 @@ export class CreateProfileComponent implements OnInit {
   }
 
   public createProfile(): void {
-    if(this.profileForm.invalid) {
+    if (this.profileForm.invalid) {
       return;
     }
 
-    this.profileService.createProfile( {
+    this.profileService.createProfile({
       pseudo: this.profileForm.get('pseudo').value,
       firstName: this.profileForm.get('firstname').value,
       lastName: this.profileForm.get('lastname').value,
       account_id: this.httpsService.getCookie().account_id,
       roles: ["USER"]
     }).subscribe();
-    this.router.navigate(['/profile']).then( () => window.location.reload());
+    this.router.navigate(['/profile']).then(() => window.location.reload());
   }
 
   public cancel(): void {
-    this.router.navigate(['/profile']).then( () => window.location.reload());
+    this.router.navigate(['/profile']).then(() => window.location.reload());
   }
 
 }

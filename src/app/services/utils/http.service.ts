@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {HttpHeaders} from "@angular/common/http";
 import {Cookie} from "../../models/cookie";
@@ -10,9 +10,10 @@ export class HttpService {
 
   constructor(
     public cookieService: CookieService
-  ) { }
+  ) {
+  }
 
-  getHeadersForRequest() : HttpHeaders {
+  getHeadersForRequest(): HttpHeaders {
     if (!this.cookieService.get('yourturncookie')) {
       return null;
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AccountService} from "../services/account/account.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -25,7 +25,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     public router: Router,
     public accountService: AccountService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.isWait = false;
@@ -33,7 +34,6 @@ export class RegisterComponent implements OnInit {
   }
 
   handleHide(): void {
-    console.log(this.hide)
     this.hide = !this.hide;
   }
 
@@ -49,8 +49,7 @@ export class RegisterComponent implements OnInit {
       if (response.status == 201) {
         this.isWait = false;
         this.isRegistered = true;
-        setTimeout(() =>
-          {
+        setTimeout(() => {
             this.router.navigate(['/login']);
           },
           880);

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Post } from "../../models/post";
-import { PostService } from "../../services/post-service/post.service";
-import { FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Post} from "../../models/post";
+import {PostService} from "../../services/post-service/post.service";
+import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 @Component({

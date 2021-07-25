@@ -1,17 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Observable } from "rxjs";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { map, startWith } from "rxjs/operators";
-import { MatChipInputEvent } from "@angular/material/chips";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { Location } from '@angular/common';
-import { ChallengeService } from "../../services/challenge-service/challenge.service";
-import { HttpService } from "../../services/utils/http.service";
-import { PostService } from "../../services/post-service/post.service";
-import { CreatePostDto } from "../../services/dto/create-post.dto";
-import { Challenge } from "../../models/challenge";
-import { ActivatedRoute } from "@angular/router";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Observable} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {map, startWith} from "rxjs/operators";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {Location} from '@angular/common';
+import {ChallengeService} from "../../services/challenge-service/challenge.service";
+import {HttpService} from "../../services/utils/http.service";
+import {PostService} from "../../services/post-service/post.service";
+import {CreatePostDto} from "../../services/dto/create-post.dto";
+import {Challenge} from "../../models/challenge";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -53,7 +53,9 @@ export class CreatePostComponent implements OnInit {
     });
 
     if (this.router.params)
-      this.router.params.subscribe(value => {this.tags.push(value.tag)});
+      this.router.params.subscribe(value => {
+        this.tags.push(value.tag)
+      });
   }
 
   // -------------------------------------------------------------------------------------------------------------------
@@ -137,7 +139,6 @@ export class CreatePostComponent implements OnInit {
     };
 
     this.postService.createPost(newPost).subscribe(value => {
-      console.log(value);
       this.handleCancelAction();
     });
   }
@@ -148,8 +149,6 @@ export class CreatePostComponent implements OnInit {
     this.challenges.forEach(value => {
       if (this.tags.includes(value.tag)) result.push(value.id);
     });
-
-    console.log(result);
     return result;
   }
 }

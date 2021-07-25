@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ChallengeService } from "../services/challenge-service/challenge.service";
-import { Challenge } from "../models/challenge";
+import {Component, OnInit} from '@angular/core';
+import {ChallengeService} from "../services/challenge-service/challenge.service";
+import {Challenge} from "../models/challenge";
 
 @Component({
   selector: 'app-challenge',
@@ -14,7 +14,8 @@ export class ChallengeComponent implements OnInit {
 
   constructor(
     private challengeService: ChallengeService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.isFetching = true;

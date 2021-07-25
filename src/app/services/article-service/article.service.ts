@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { ArticleDto } from "../dto/article-dto/article.dto";
-import { CreateArticleDto } from "../dto/article-dto/create-article.dto";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {ArticleDto} from "../dto/article-dto/article.dto";
+import {CreateArticleDto} from "../dto/article-dto/create-article.dto";
 
 
 @Injectable({

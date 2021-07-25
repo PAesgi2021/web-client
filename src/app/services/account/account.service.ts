@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse, HttpStatusCode} from "@angular/common/http";
+import {HttpClient, HttpResponse, HttpStatusCode} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {AccountDTO} from "../dto/account.dto";
 import {CookieService} from "ngx-cookie-service";
@@ -8,7 +8,6 @@ import {catchError, switchMap} from "rxjs/operators";
 import {FileUtils} from "../../utils/file-utils";
 import {Router} from "@angular/router";
 import {HttpService} from "../utils/http.service";
-import {Account} from "../../models/account";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,7 @@ export class AccountService {
   }
 
   getAccountById(): Observable<AccountDTO> {
-    return this.http.get<AccountDTO>(this.API_URL + '/' +this.httpService.getCookie().account_id);
+    return this.http.get<AccountDTO>(this.API_URL + '/' + this.httpService.getCookie().account_id);
   }
 
   login(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
@@ -39,7 +38,6 @@ export class AccountService {
       catchError(async (error) => FileUtils.handleErrorObservable(error))
     );
   }
-
 
 
   register(dto: AccountDTO): Observable<HttpResponse<AccountDTO>> {
@@ -84,20 +82,20 @@ export class AccountService {
       observe: 'response',
     }, {headers: this.httpService.getHeadersForRequest()})
       .pipe(
-      catchError(async (error) => FileUtils.handleErrorObservable(error))
-    ).pipe(switchMap((res) => {
-      if (res == 202) {
-        return of(true);
-      } else if (res.status == 401) {
-        return of(false);
-      } else {
-        return of(false);
-      }
-    }));
+        catchError(async (error) => FileUtils.handleErrorObservable(error))
+      ).pipe(switchMap((res) => {
+        if (res == 202) {
+          return of(true);
+        } else if (res.status == 401) {
+          return of(false);
+        } else {
+          return of(false);
+        }
+      }));
   }
 
   checkAuthentication() {
-    this.isAuthenticated().subscribe( value => {
+    this.isAuthenticated().subscribe(value => {
       if (!value) {
         this.router.navigate(['/login']);
       }
