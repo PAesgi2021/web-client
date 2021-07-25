@@ -31,11 +31,13 @@ export class HeaderComponent implements OnInit {
   }
 
   public selectedProfile(): void {
-    this.profileService.getProfileById(this.httpService.getCookie().current_profile_id).subscribe(value => {
-      this.profile = new Profile( {
-        ...value
+    if (this.httpService.getCookie().current_profile_id) {
+      this.profileService.getProfileById(this.httpService.getCookie().current_profile_id).subscribe(value => {
+        this.profile = new Profile( {
+          ...value
+        });
       });
-    })
+    }
   }
 
   public isAdmin(): boolean {
