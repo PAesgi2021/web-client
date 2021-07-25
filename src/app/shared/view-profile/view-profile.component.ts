@@ -48,7 +48,8 @@ export class ViewProfileComponent implements OnInit {
 
 
   public deleteProfile(): void {
-    this.profileService.deleteProfile(this.profile.id);
+    this.profile.status = !this.profile.status;
+    this.profileService.updateProfile(this.profile.id, {status: this.profile.status}).subscribe(console.log);
     this.router.navigate(['/profile']).then( () => {
       window.location.reload();
     })
